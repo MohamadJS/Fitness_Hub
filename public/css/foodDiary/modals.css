@@ -1,0 +1,119 @@
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 50rem;
+    height: 25rem;
+    height: 52vh;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+}
+
+.close-button:hover {
+    color: red;
+}
+
+.show-modal {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: hidden 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.hide {
+    display: none;
+}
+
+.modal-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.modal-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 1rem;
+}
+
+.nutrients-tab {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+}
+
+.edit {
+    width: 100%;
+    text-align: center;
+}
+
+/* .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    box-sizing: border-box;
+} */
+
+.container-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 960px;
+    box-sizing: border-box;
+    height: 90%;
+}
+
+.nutrient-container {
+    width: 100%;
+    margin: 0 1em;
+    box-sizing: border-box;
+}
+
+.container-modal > p {
+    margin: 1em;
+    font-size: 1.5rem;
+}
+
+.item {
+    border-bottom: 1px solid rgb(207, 207, 207);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    color: rgb(90, 90, 90);
+    box-sizing: border-box;
+    font-size: .75rem;
+}

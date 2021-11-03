@@ -1,0 +1,433 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+header {
+    margin-bottom: 2em;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+}
+
+main {
+    margin: 0 1.5em;
+}
+
+a {
+    text-decoration: none;
+    color: #2289ff;
+}
+
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+}
+
+.panel-header {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.5em;
+}
+
+.panel-header h1 {
+    color: #2289ff;
+    font-size: 3em;
+    font-weight: 500;
+}
+
+.panel-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.panel-option a {
+    margin: 0px 1em;
+}
+
+.panel-option a:hover {
+    color: #fb8500;
+}
+
+.panel:last-child {
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+nav {
+    background-color: #0076fd;
+    height: 3em;
+}
+
+.nav-option {
+    margin: 0 3rem;
+}
+
+.nav-option a {
+    font-size: 1.25em;
+    padding: .75rem .75rem;
+    color: white;
+}
+
+.nav-option a:hover {
+    color: rgba(251, 133, 0, 75%);
+}
+
+.container-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-bottom: 6vh;
+}
+
+.motto-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2.5em;
+}
+
+.container-top:nth-of-type(2) .motto-container, .container-top:nth-of-type(3) .motto-container {
+    text-align: center;
+}
+
+.motto-text {
+    /* margin: 0 5em; */
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 3.5em;
+    font-weight: 800;
+    color: #272838;
+}
+
+.motto-descrip, .panel-advantage p {
+    /* margin-left: 18rem; */
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    margin: 0.75em 0;
+    font-size: 1.25em;
+    font-weight: 350;
+    line-height: 1.5em;
+}
+
+.motto-button {
+    /* margin-left: 18rem; */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0.75em 0;
+    font-size: 1.25em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.motto-button a, .start-button {
+    padding: 0.5em 2em;
+    background-color: #2289ff;
+    border-radius: 0.2em;
+    color: white;
+    transition: 500ms background-color, 500ms color;
+}
+
+.motto-button a:hover, .start-button:hover {
+    background-color: white;
+    color: #2289ff;
+}
+
+.eat-right {
+    margin: 0 2.5em;
+}
+
+.eat-right img {
+    width: 509px;
+}
+
+.container-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.image {
+    margin: 0 2.5em;
+    max-width: 1200px;
+}
+
+.image img {
+    max-width: 509px;
+    height: 450px;
+    width: 509px;
+}
+
+.middle-text {
+    font-size: 3em;
+    display: flex;
+    justify-items: center;
+}
+
+
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+
+/* .container-benefits {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+} */
+
+/* .panel-advantage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    width: auto;
+} */
+
+.benefits-title {
+    color: #272838;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.5em;
+    margin-top: 10vh;
+    margin-bottom: 2.5vh;
+}
+
+.container-benefits {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    min-width: 300px;
+    margin: 2.5vh auto;
+    border-radius: 10px;
+    box-sizing: border-box;
+    /* box-shadow: 0 0.5em 2em 0.1em #0000006e; */
+}
+
+
+.panel-advantage {
+    padding: 25px 15px;
+    margin: 0 0.5em;
+    width: 30%;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.panel-advantage:first-child {
+    margin-left: 0;
+}
+
+.panel-advantage:last-child {
+    margin-right: 0;
+}
+
+.panel-advantage h3 {
+    color: #272838;
+    margin: 0.25em 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0.125em 0;
+}
+
+.panel-advantage p {
+    font-size: 1.125rem;
+    font-weight: 400;
+    /* width: 30%; */
+    /* margin: 0 auto; */
+    text-align: center;
+}
+
+.panel-advantage img {
+    width: 75%;
+}
+
+.benefits-button {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+
+
+@media (max-width: 1250px) {
+    .container-top .motto-container {
+        text-align: center;
+    }
+    .motto-text {
+        font-size: 2em;
+    }
+    .eat-right img {
+        width: 400px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .motto-container {
+        text-align: center;
+    }
+
+    body {
+        font-size: 0.8em;
+    }
+
+    .page-title {
+        font-size: 75px;
+    }
+
+    .motto-descrip {
+        font-size: 1.5em;
+    }
+
+    .container-benefits {
+        flex-direction: row;
+        font-size: 0.5em;
+    }
+
+    .panel-advantage:last-child {
+        border-right: none;
+    }
+}
+
+@media (max-width: 1075px) {
+    .container-top {
+        flex-direction: column;
+    }
+
+    .motto-descrip {
+        font-size: 1.5rem;
+    }
+
+    .container-benefits {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70%;
+    }
+
+    .panel-advantage {
+        width: 70%;
+    }
+
+    .panel-advantage img {
+        width: 50%;
+    }
+
+    .panel-advantage p {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .motto-descrip {
+        font-size: 1rem;
+    }
+
+    .container-benefits {
+        width: 90%;
+    }
+
+    .benefits-title {
+        font-size: 1.75rem;
+    }
+
+    .panel-advantage {
+        width: 90%;
+    }
+
+    .panel-advantage img {
+        width: 75%;
+    }
+
+    .panel-advantage p {
+        font-size: 1rem;
+    }
+}

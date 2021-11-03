@@ -1,0 +1,160 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+header {
+    margin-bottom: 2em;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+}
+
+main {
+    margin: 0 1.5em;
+}
+
+a {
+    text-decoration: none;
+    color: #2289ff;
+}
+
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+    box-sizing: border-box;
+}
+
+.panel-header {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.5em;
+    box-sizing: border-box;
+}
+
+.panel-header h1 {
+    color: #2289ff;
+    font-size: 3em;
+    font-weight: 500;
+}
+
+.panel-header a:hover {
+    color: #2289ff;
+    color: #0270ee;
+}
+
+.panel-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.panel-option a {
+    margin: 0px 1em;
+}
+
+.panel-option a:hover {
+    color: #185ead;
+    color: #ebcf35;
+}
+
+.panel:last-child {
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+nav {
+    background-color: #0076fd;
+    height: 3em;
+}
+
+.nav-option {
+    margin: 0 3rem;
+}
+
+.nav-option a {
+    font-size: 1.25em;
+    padding: .75rem .75rem;
+    color: white;
+}
+
+.nav-option a:hover {
+    color: rgb(255, 174, 0);
+    color: #bcdbfc;
+    color: #ebcf35;
+}
+
+/* @media (max-width: 1199px ) {
+    body {
+        font-size: 0.8em;
+    }
+} */
+
+html, body {
+    overflow-x: hidden;
+  }
+  body {
+    position: relative
+  }

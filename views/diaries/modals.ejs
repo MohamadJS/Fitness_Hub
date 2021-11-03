@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Diary</title>
+    <link rel="stylesheet" href="/css/partials/header.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="/css/foodDiary/edit.css">
+    <link rel="stylesheet" href="/css/foodDiary/modals.css">
+</head>
+<body>
+    <%- include("../partials/header") %> 
+    <%- include("../partials/flash") %> 
+    <main>
+        <!-- https://sabe.io/tutorials/how-to-create-modal-popup-box -->
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-button"><a class="close-button" href="/diary/<%= foodDiary.date %>">&times;</a></span>
+                <h1 class="modal-title"><%= data.foods[0].description %></h1>
+                <p class="id"><%= selectedFood.fdcId %></p>
+                <div class="modal-container">
+                    <div class="nutrients-tab">
+                        <h2>Nutrition Information</h2>
+                        <div class="container-left">
+                            <div class="nutrient-container">
+                              <% for (let i = 0; i < 9; i++) { %> 
+                                <p class="item"><%= arrayNames[i] %> 
+                                  <span class="unit">
+                                    <span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value) %></span>
+                                    <span><%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></p>
+                                  </span>
+                              <% } %> 
+                            </div>
+                            <div class="nutrient-container">
+                              <% for (let i = 9; i < 16; i++) { %> 
+                                <p class="item"><%= arrayNames[i] %> 
+                                  <span class="unit"><span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value)%></span><span>
+                                    <%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></span>
+                                  </p>
+                              <% } %> 
+                            </div>
+                          </div>
+                    </div>
+                    <div class="edit">
+                        <h2>Edit</h2>
+                        <form action="">
+                            <label for="food-portion">Serving Size </label>
+                            <select name="grams">
+                              <option value="<%= selectedFood.grams %>" id="food-portion"><%= selectedFood.servingSize %></option>
+                            </select>
+                            <div class="amount">
+                                <label for="amount">Number of Servings </label>
+                                <input type="number" name="amount" id="amount" value="<%= selectedFood.amount %>" min="0.1" required>
+                              </div>
+                            <button>Update</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include("../partials/diary") %> 
+        <script src="\js\edit.js"></script>
+        <script src="\js\foodDiary\modals.js"></script>
+    </main>
+</body>
+</html>

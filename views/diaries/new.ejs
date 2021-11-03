@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= data.foods[0].description %></title>
+    <link rel="stylesheet" href="../css/partials/header.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/food.css">
+</head>
+<body>
+  <%- include("../partials/header") %> 
+  <%- include("../partials/flash") %> 
+  <main>
+    <%// for (let nutrient of data.foods[0].foodNutrients) { %> 
+      <!-- <p><%=// nutrient.nutrientName %> <span><%=// nutrient.value %></span><span><%= //nutrient.unitName.toLowerCase() %></span></p> -->
+      <%// } %> 
+      <!-- <% //for (let i = 0; i < 16; i++) { %> 
+        <p><%= //data.foods[0].foodNutrients[arrayPosition[i]].nutrientName%> 
+          <span class="value"><%=// Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value)%></span>
+        </p>
+      <% //} %>  -->
+      <div class="wrapper">
+        <div class="title-container">
+          <h1 class="title"><%= data.foods[0].description %></h1>
+          <h2 class="category"><%= data.foods[0].foodCategory %></h2>
+        </div>
+    <form action="/food/<%= data.foods[0].fdcId %>" method="POST">
+      <input type="hidden" name="foodName" id="food-name" value="<%= data.foods[0].description %>" required>
+      <input type="hidden" name="servingSize" id="serving-size" value="100g" required>
+      <input type="hidden" name="fdcId" id="food-id" value="<%= data.foods[0].fdcId %>" required>
+      <div class="ss-container">
+        <label for="food-portion">Serving Size </label>
+        <select name="grams">
+          <option value="100" id="food-portion">Loading...</option>
+        </select>
+      </div>
+      <div class="amount">
+        <label for="amount">Number of Servings </label>
+        <input type="number" name="amount" id="amount" value="1" min="0" required>
+      </div>
+      <div class="center">
+        <% if(currentUser) { %> 
+        <input type="date" name="date" id="date-picker" min="2021-01-01" required>
+          <select name="meal">
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+            <% } %> 
+          </select>
+        <button>Log Food</button>
+      </div>
+      </form>
+        <div class="container">
+          <div class="nutrient-container">
+            <% for (let i = 0; i < 9; i++) { %> 
+              <p class="item">
+                <%= data.foods[0].foodNutrients[arrayPosition[i]].nutrientName %> 
+                <span class="unit">
+                  <span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value) %></span><span><%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></p>
+                </span>
+            <% } %> 
+          </div>
+          <div class="nutrient-container">
+            <% for (let i = 9; i < 16; i++) { %> 
+              <p class="item"><%= data.foods[0].foodNutrients[arrayPosition[i]].nutrientName %> 
+                <span><span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value)%></span><span>
+                  <%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></span>
+                </p>
+            <% } %> 
+          </div>
+        </div>
+      </div>
+  </main>
+    <!-- <script src="\js\foodInfo.js"></script> -->
+    <script src="\js\food.js"></script>
+</body>
+</html>

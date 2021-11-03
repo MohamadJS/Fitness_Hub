@@ -1,0 +1,275 @@
+div {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    box-sizing: border-box;
+}
+
+form, button, .calories {
+    display: inline-block;
+}
+
+.food {
+    text-align: left;
+}
+
+.servings {
+    font-size: 0.75rem;
+}
+
+.flex {
+    display: flex;
+    border-bottom: 1px solid grey;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.diary, .diary-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.diary {
+    /* margin-top: 5%; */
+    /* margin-top: 15vh;
+    margin: 0 auto; */
+    justify-content: center;
+    width: 100%;
+}
+
+.diary-container {
+    justify-self: center;
+    align-items: center;
+}
+
+.diary-title {
+    color: #272838;
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    min-width: 1200px;
+    max-width: 1200px;
+    justify-content: space-between;
+}
+
+.diary-item {
+    max-width: 1200px;
+    min-width: 48%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* .diary-item:first-of-type {
+    margin-right: 2rem;
+} */
+
+.diary-item h2 {
+    font-size: 1.1rem;
+    background-color: #00478a;
+    /* D2D5DD  Grey */
+    /* 272838 Purple/Black */
+    /* 031927 **Black** */
+    /* 00478a **Darker Blue** */
+    color: #E8F1F2;
+    padding: 0.5rem 0;
+    border-radius: 4px;
+}
+
+.diary-item h2::after {
+    content: "";
+    width: 50%;
+    position: relative;
+    top: 25%;
+    left: 0%;
+    border-bottom: 5px solid red;
+}
+
+.diary-item p, form {
+    color: rgb(90, 90, 90);
+    /* border-bottom: 1px solid lightgrey; */
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+}
+
+.food-name {
+    font-weight: 600;
+}
+
+.food-options {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.fa, fa-edit, fa-close {
+    background-color: transparent;
+    border: none;
+    font-size: .85rem;
+    color: rgb(59, 59, 59);
+}
+
+.fa-edit:hover {
+    color: rgb(255, 174, 0);
+}
+
+.fa-close:hover {
+    color: red;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: .8rem;  /* Preferred icon size */
+    display: inline-block;
+    /* line-height: 1; */
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    color: black;
+    background-color: transparent;
+    border: none;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.modal-add {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal-content-add {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+.close-button-add {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+}
+.close-button-add:hover {
+    color: red;
+}
+.show-modal-add {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+
+/* @media (min-width: 768px) and (max-width: 1024px) {
+    .wrapper, .diary-container, .diary {
+        box-sizing: border-box;
+    }
+    .food {
+        font-size: 1.25em;
+    }
+} */
+
+@media (max-width: 1024px) {
+    .wrapper {
+        min-width: 1000px;
+    }
+}
+
+@media (max-width: 900px) {
+
+.diary-container {
+    margin-top: 1.5rem;
+    }
+
+    .diary-title {
+        font-size: 1.75rem;
+    }
+
+    .diary-item, .wrapper {
+        min-width: 100%;
+    }
+
+    .diary-item:first-of-type {
+        margin-bottom: 5rem;
+    }
+
+    .wrapper {
+        flex-direction: column;
+        margin-bottom: 5rem;
+    }
+
+    .flex {
+        justify-content: space-between;
+        max-width: 100%;
+        flex-wrap: nowrap;
+    }
+
+    .food {
+        min-width: 50%;
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .food-options {
+        flex-wrap: nowrap;
+        display: flex;
+        align-items: center;
+    }
+
+    .remove button {
+        padding: 0;
+    }
+
+    .food-name {
+        font-size: 0.75rem;
+    }
+
+    .diary-item p, form {
+        margin: 0.125rem 0;
+    }
+}

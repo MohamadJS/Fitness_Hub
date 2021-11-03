@@ -1,0 +1,29 @@
+<header>
+    <div class="panel">
+      <div class="panel-header">
+        <h1><a href="/">Fitness Hub</a></h1>
+        <div class="panel-option">
+          <% if(!currentUser) { %> 
+          <a href="/signup" class="signup">SignUp</a>
+          <a href="/login">Login</a>
+          <% } else { %> 
+            <a href="/diary">Food Log</a>
+            <a href="/logout">Logout</a>
+          <% } %> 
+        </div>
+      </div>
+    </div>
+    <nav>
+      <div class="panel">
+        <div class="nav-option">
+          <a href="#">About</a>
+        </div>
+        <div class="nav-option">
+          <a href="/food">Foods</a>
+        </div>
+        <div class="nav-option">
+          <a href="#">Blogs</a>
+        </div>
+      </div>
+    </nav>
+  </header>

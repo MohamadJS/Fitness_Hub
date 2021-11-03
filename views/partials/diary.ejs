@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="diary">
+        <div class="diary-container">
+            <h1 class="diary-title">Food Diary - <span class="date"><%= foodDiary.date %></span></h1>
+            <div class="wrapper">
+                <div class="diary-item">
+                    <h2>Breakfast</h2>
+                    <% if(!foodDiary.food.breakfast[0]) { %> 
+                    <!-- Total calories, add totalCal to the foodDiarySchema, do logic inside the new route.-->
+                    <!-- Instead of putting if statement above, just put the foodDiary.food.breakfast.totalCal in h2 -->
+                    <!-- <h2>0 Cal</h2> -->
+                    <% } %> 
+                <% for(food of foodDiary.food.breakfast) { %> 
+                    <div class="flex">
+                        <div class="food">
+                            <p class="food-name"><%= food.foodName %></p>
+                            <p class="servings"><%= food.servingSize %></p>
+                        </div>
+                        <div class="food-options">
+                            <p class="calories">150</p>
+                            <form action="/diary/<%= foodDiary.date %>/breakfast/<%= food._id %>"><button class="btn fa fa-edit"></button></form>
+                            <form action="/diary/<%= foodDiary.date %>/breakfast/<%= food._id %>?_method=DELETE" method="post" class="remove"><button class="btn fa fa-close"></button></form>
+                        </div>
+                    </div>
+                <% } %> 
+                    <button class="trigger">Add Food</button>
+                </div>
+                <div class="diary-item">
+                <h2>Lunch</h2>
+                <% for(food of foodDiary.food.lunch) { %> 
+                    <div class="flex">
+                        <div class="food">
+                            <p class="food-name"><%= food.foodName %></p>
+                            <p class="servings"><%= food.servingSize %></p>
+                        </div>
+                        <div class="food-options">
+                            <p class="calories">150</p>
+                            <form action="/diary/<%= foodDiary.date %>/lunch/<%= food._id %>"><button class="btn fa fa-edit"></button></form>
+                            <form action="/diary/<%= foodDiary.date %>/lunch/<%= food._id %>?_method=DELETE" method="post" class="remove"><button class="btn fa fa-close"></button></form>
+                        </div>
+                    </div>
+                <% } %> 
+                <button class="trigger">Add Food</button>
+                    <div class="modal-add">
+                        <div class="modal-content-add">
+                            <span class="close-button-add">×</span>
+                            <h1>Add Food</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="diary-item">
+                    <h2>Dinner</h2>
+                    <% for(food of foodDiary.food.dinner) { %> 
+                        <div class="flex">
+                            <div class="food">
+                                <p class="food-name"><%= food.foodName %></p>
+                                <p class="servings"><%= food.servingSize %></p>
+                            </div>
+                            <div class="food-options">
+                                <p class="calories">150</p>
+                                <form action="/diary/<%= foodDiary.date %>/dinner/<%= food._id %>"><button class="btn fa fa-edit"></button></form>
+                                <form action="/diary/<%= foodDiary.date %>/dinner/<%= food._id %>?_method=DELETE" method="post" class="remove"><button class="btn fa fa-close"></button></form>
+                            </div>
+                        </div>
+                    <% } %> 
+                    <button class="trigger">Add Food</button>
+                    </div>
+                    <div class="diary-item">
+                    <h2>Snacks</h2>
+                    <% for(food of foodDiary.food.snack) { %> 
+                        <div class="flex">
+                            <div class="food">
+                                <p class="food-name"><%= food.foodName %></p>
+                                <p class="servings"><%= food.servingSize %></p>
+                            </div>
+                            <div class="food-options">
+                                <p class="calories">150</p>
+                                <form action="/diary/<%= foodDiary.date %>/snack/<%= food._id %>"><button class="btn fa fa-edit"></button></form>
+                                <form action="/diary/<%= foodDiary.date %>/snack/<%= food._id %>?_method=DELETE" method="post" class="remove"><button class="btn fa fa-close"></button></form>
+                            </div>
+                        </div>
+                    <% } %> 
+                    <button class="trigger">Add Food</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="\js\edit.js"></script>
