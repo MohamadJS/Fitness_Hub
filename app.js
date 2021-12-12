@@ -15,6 +15,7 @@ const User = require("./models/user");
 
 const userRoutes = require("./routes/user");
 const diaryRoutes = require("./routes/foodDiary");
+const recipeRoutes = require("./routes/recipe");
 
 mongoose.connect("mongodb://localhost:27017/fitness-hub", {
     useNewUrlParser: true,
@@ -121,6 +122,7 @@ app.get("/nutrition", (req, res) => {
 
 app.use("/", userRoutes);
 app.use("/", diaryRoutes);
+app.use("/", recipeRoutes);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page not Found", 404));

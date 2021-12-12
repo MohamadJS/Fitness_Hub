@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Recipe</title>
+    <link rel="stylesheet" href="../css/partials/header.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/recipe/new.css">
+</head>
+<body>
+    <%- include("../partials/header") %> 
+    <%- include("../partials/flash") %> 
+    <main>
+        <div class="container-main">
+            <div class="form-container">
+                <h1>Share a Recipe!</h1>
+                <form action="/recipes/new" method="POST">
+                    <div class="form-item">
+                        <label for="title">Recipe Name</label>
+                        <input id="title" type="text" name ="title" placeholder="ex. Apple Pie" autocorrect="off" autocomplete="off" required >
+                    </div>
+                    <div class="form-item">
+                        <label for="img">Image</label>
+                        <input id="img" type="img" name="img" placeholder="img.com/1235.png" autocomplete="off" required >
+                    </div>
+                    <div class="form-item">
+                        <label for="body">Instructions</label>
+                        <textarea name="body" id="body" cols="75" rows="20" autocomplete="off" placeholder="Ingredients &#x0a;&#x0a;1. 1 large egg &#x0a;2. 14 tbs butter &#x0a;3." required></textarea>
+                    </div>
+                    <button>Post</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
