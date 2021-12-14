@@ -5,9 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= recipe.title %></title>
+    <link rel="stylesheet" href="../css/partials/header.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/recipe/show.css">
 </head>
 <body>
-    <h1><%= recipe.title %></h1>
-    <p><%= recipe.body %></p>
+    <%- include("../partials/header") %> 
+    <%- include("../partials/flash") %> 
+    <main>
+        <div class="container-main">
+            <div class="post">
+                <h1 class="post-title"><%= recipe.title %></h1>
+                <img class="post-image" src="<%= recipe.image %>" alt="">
+                <div class="post-main">
+                    <h2 class="recipe-title"><%= recipe.title %></h2>
+                        <div class="ingredients-div">
+                            <h2 class="recipe-subtitle">Ingredients</h2>
+                            <li class="post-ingredients">Walnuts</li>
+                            <li class="post-ingredients">2 tablespoons olive oil</li>
+                            <li class="post-ingredients">2 tablespoons dark maple syrup</li>
+                            <li class="post-ingredients">1/2 teaspoon ground cinnamon</li>
+                        </div>
+                        <div class="directions-div">
+                            <h2 class="recipe-subtitle">Directions</h2>
+                            <p class="post-directions" id="just-line-break"><%= recipe.body %></p>
+                        </div>
+                    </div>
+                <a href="/recipes/<%= recipe._id %>/edit">Edit</a>
+                <a href="/recipes">Back</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

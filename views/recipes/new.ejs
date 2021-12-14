@@ -22,15 +22,15 @@
                 <form action="/recipes/new" method="POST">
                     <div class="form-item">
                         <label for="title">Recipe Name</label>
-                        <input id="title" type="text" name ="title" placeholder="ex. Apple Pie" autocorrect="off" autocomplete="off" required >
+                        <input id="title" type="text" name ="recipe[title]" placeholder="ex. Apple Pie" autocorrect="off" autocomplete="off" required >
                     </div>
                     <div class="form-item">
                         <label for="img">Image</label>
-                        <input id="img" type="img" name="img" placeholder="img.com/1235.png" autocomplete="off" required >
+                        <input id="img" type="img" name="recipe[image]" placeholder="img.com/1235.png" autocomplete="off" required >
                     </div>
                     <div class="form-item">
                         <label for="body">Instructions</label>
-                        <textarea name="body" id="body" cols="75" rows="20" autocomplete="off" placeholder="Ingredients &#x0a;&#x0a;1. 1 large egg &#x0a;2. 14 tbs butter &#x0a;3." required></textarea>
+                        <textarea id="body" name="recipe[body]" cols="75" rows="20" autocomplete="off" placeholder="Ingredients &#x0a;&#x0a;1. 1 large egg &#x0a;2. 14 tbs butter &#x0a;3." onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" required></textarea>
                     </div>
                     <button>Post</button>
                 </form>

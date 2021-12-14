@@ -6,9 +6,7 @@ const ejsMate = require("ejs-mate");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const path = require("path");
-const FoodDiary = require("./models/foodDiaries");
 const ExpressError = require("./utils/ExpressError");
-const catchAsync = require("./utils/catchAsync");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
@@ -16,6 +14,7 @@ const User = require("./models/user");
 const userRoutes = require("./routes/user");
 const diaryRoutes = require("./routes/foodDiary");
 const recipeRoutes = require("./routes/recipe");
+const commentRoutes = require("./routes/comment");
 
 mongoose.connect("mongodb://localhost:27017/fitness-hub", {
     useNewUrlParser: true,
@@ -79,50 +78,10 @@ app.get("/nutrition", (req, res) => {
     res.render("nutrition");
 })
 
-// app.get("/api", (req, res) => {
-//     const { search } = req.query;
-//     // console.log(search);
-//     res.render("api", { search });
-// })
-
-// app.post("/api/:food", (req, res) => {
-//     const food = req.params.food;
-//     res.redirect(`/api/${food}`)
-// })
-
-// // Add another variable in which it is the id of the food, so we can send it with our 
-// app.get("/api/:food", catchAsync(async (req, res, next) => {
-//     const { food } = req.params;
-//     const data = await foodApi(food);
-//     // if there is no data recieved, go to error template, else display the food data.
-//     !data.foods[0] ? next() : res.render("food", { data, arrayPosition }); 
-//     // console.log(data);
-//     // console.log(food)
-//     // console.log(data.foods[0].foodNutrients[0]);
-//     // console.log(data[0]);
-//     // res.render("food", { data, arrayPosition });
-// }))
-
-// app.post("/logFood", catchAsync(async (req, res) => {
-//     // res.send(req.body);
-//     const { foodName, servingSize, fdcId, date, grams, meal } = req.body;
-//     let foodDiary = await FoodDiary.findOne({ date });
-//     if (!foodDiary) {
-//         foodDiary = await new FoodDiary({ date });
-//     }
-//     // console.log(`***${meal}***`);
-//     foodDiary.food[meal].push({ foodName, servingSize, grams, fdcId });
-//     await foodDiary.save();
-//     // res.send(foodDiary);
-//     // console.log(input);
-//     req.flash(`success`, `Logged ${foodName} for your ${meal}`);
-//     res.redirect("/api");
-//     // res.redirect(`/api/${input.foodName}?id=${input.fdcId}`);
-// }))
-
 app.use("/", userRoutes);
 app.use("/", diaryRoutes);
 app.use("/", recipeRoutes);
+app.use("/recipes/:id/comments", commentRoutes);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page not Found", 404));
