@@ -1,3 +1,8 @@
+textarea {
+    resize: none;
+    font-family: inherit;
+}
+
 .container-main {
     display: flex;
     flex-direction: column;
@@ -7,12 +12,17 @@
     overflow: hidden;
 }
 
+.link {
+    align-self: flex-start;
+    font-size: 18px;
+}
+
 .post {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     max-width: 756px;
-    min-width: 300px;
+    min-width: 756px;
 }
 
 .post-title {
@@ -25,8 +35,9 @@
 .post-image {
     margin: 0 auto;
     max-width: 756px;
+    min-width: 756px;
     max-height: 756px;
-    min-height: 300px;
+    min-height: 0px;
 }
 
 .recipe-title {
@@ -68,6 +79,78 @@
     line-height: 1.25;
 }
 
+.comments-div {
+    max-width: 756px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 ;
+}
+
+.comments-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.comments-form {
+    max-width: 756px;
+    width: 100%;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comments-form textarea {
+    max-width: 756px;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border-color: #2289ff;
+}
+
+.comments-form button {
+    align-self: flex-end;
+}
+
+.comment {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid lightgray;
+}
+
+.comment-body {
+    margin-bottom: 0.5rem;
+}
+
+.button {
+    padding: 0.5rem 0.75rem;
+    color: white;
+    background-color: #2289ff;
+    border: none;
+    border-radius: 0.125rem;
+    transition: 500ms background-color, 500ms color;
+}
+
+.button:hover {
+    color: #2289ff;
+    background-color: white;
+    cursor: pointer;
+}
+
+.button-delete {
+    font-size: 13px;
+    color: white;
+    background-color: #f22;
+}
+
+.button-delete:hover {
+    color: #f22;
+    background-color: white;
+}
 
 /* .ingredients, .directions {
     display: flex;

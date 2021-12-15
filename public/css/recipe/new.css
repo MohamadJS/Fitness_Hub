@@ -4,6 +4,7 @@ html {
 
 textarea {
     resize: none;
+    font-family: inherit;
 }
 
 .container-main {
@@ -11,7 +12,11 @@ textarea {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 4em 0;
+}
+
+.link {
+    align-self: flex-start;
+    font-size: 18px;
 }
 
 .form-container {

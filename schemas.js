@@ -17,6 +17,7 @@ module.exports.recipeSchema = Joi.object({
     recipe: Joi.object({
         title: Joi.string().required(),
         image: Joi.string().required(),
+        ingredients: Joi.string().required(),
         body: Joi.string().required(),
     }).required()
 })

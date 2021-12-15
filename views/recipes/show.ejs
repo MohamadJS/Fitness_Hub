@@ -17,6 +17,7 @@
     <%- include("../partials/flash") %> 
     <main>
         <div class="container-main">
+            <a class="link" href="/recipes">Back</a>
             <div class="post">
                 <h1 class="post-title"><%= recipe.title %></h1>
                 <img class="post-image" src="<%= recipe.image %>" alt="">
@@ -24,10 +25,9 @@
                     <h2 class="recipe-title"><%= recipe.title %></h2>
                         <div class="ingredients-div">
                             <h2 class="recipe-subtitle">Ingredients</h2>
-                            <li class="post-ingredients">Walnuts</li>
-                            <li class="post-ingredients">2 tablespoons olive oil</li>
-                            <li class="post-ingredients">2 tablespoons dark maple syrup</li>
-                            <li class="post-ingredients">1/2 teaspoon ground cinnamon</li>
+                             <% for(let ingredient of ingredients) { %> 
+                             <li class="post-ingredients"><%= ingredient %></li>
+                             <% } %> 
                         </div>
                         <div class="directions-div">
                             <h2 class="recipe-subtitle">Directions</h2>
@@ -35,7 +35,21 @@
                         </div>
                     </div>
                 <a href="/recipes/<%= recipe._id %>/edit">Edit</a>
-                <a href="/recipes">Back</a>
+            </div>
+            <div class="comments-div">
+                <h2 class="comments-title">Comments</h2>
+                <form class="comments-form" action="/recipes/<%= recipe._id %>/comments" method="POST">
+                    <textarea name="comment[body]" id="comment" cols="90" rows="3" placeholder="Leave a Comment..." required></textarea>
+                    <button class="button">Comment</button>
+                </form>
+                <% for(let comment of recipe.comments) { %> 
+                    <div class="comment">
+                        <p class="comment-body"><%= comment.body %></p>
+                        <form action="/recipes/<%= recipe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <button class="button button-delete">Delete</button>
+                        </form>
+                    </div>
+                <% } %> 
             </div>
         </div>
     </main>

@@ -10,17 +10,26 @@
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/css/recipe/index.css">
 </head>
 <body>
     <%- include("../partials/header") %> 
     <%- include("../partials/flash") %> 
     <main>
-        <a href="/recipes/new">New Recipe</a>
-        <% for (let recipe of recipes) {%>
-        <div>
-            <a href="recipes/<%= recipe._id %>"><%= recipe.title %></a>
+        <div class="container-main">
+                <h1 class="title">Recipes</h1>
+                <a href="/recipes/new">New Recipe</a>
+            <div class="post">
+                    <% for (let recipe of recipes) {%>
+                        <figure class="textover">
+                            <a href="recipes/<%= recipe._id %>">
+                                <img class="thumbnail" src="<%= recipe.image %>" alt="">
+                                <h2><%= recipe.title %></h2>
+                            </a>
+                        </figure>
+                    <% } %>
+            </div>    
         </div>
-        <% } %> 
     </main>
 </body>
 </html>

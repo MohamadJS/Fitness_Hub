@@ -81,7 +81,7 @@ app.get("/nutrition", (req, res) => {
 app.use("/", userRoutes);
 app.use("/", diaryRoutes);
 app.use("/", recipeRoutes);
-app.use("/recipes/:id/comments", commentRoutes);
+app.use("/recipes", commentRoutes);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page not Found", 404));

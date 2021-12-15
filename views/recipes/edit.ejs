@@ -17,6 +17,7 @@
     <%- include("../partials/flash") %> 
     <main>
         <div class="container-main">
+            <a class="link" href="/recipes/<%= recipe._id %>">Back</a>
             <div class="form-container">
                 <h1>Edit Recipe</h1>
                 <form action="/recipes/<%= recipe._id %>/edit?_method=PUT" method="POST">
@@ -29,7 +30,11 @@
                         <input id="img" type="img" name="recipe[image]" placeholder="img.com/1235.png" autocomplete="off" value="<%= recipe.image %>" required >
                     </div>
                     <div class="form-item">
-                        <label for="body">Instructions</label>
+                        <label for="ingredients">Ingredients:</label>
+                        <textarea name="recipe[ingredients]" id="ingredients" cols="30" rows="10" required><%= recipe.ingredients %></textarea>
+                    </div>
+                    <div class="form-item">
+                        <label for="body">Directions:</label>
                         <textarea name="recipe[body]" id="body" cols="75" rows="20" autocomplete="off" placeholder="Ingredients &#x0a;&#x0a;1. 1 large egg &#x0a;2. 14 tbs butter &#x0a;3."  onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" required><%= recipe.body %></textarea>
                     </div>
                     <button>Update</button>

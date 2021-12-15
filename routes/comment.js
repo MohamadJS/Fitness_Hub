@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Recipe = require("../models/recipes");
 const Comment = require("../models/comment");
-const commentSchema = require("../schemas");
+const { commentSchema } = require("../schemas");
 const catchAsync = require("../utils/catchAsync");
 const ExpressError = require("../utils/ExpressError");
 
@@ -20,9 +20,10 @@ const validateComment = (req, res, next) => {
 }
 
 // Routes
-router.post("/", validateComment, catchAsync(async (req, res) => {
+router.post("/:id/comments", validateComment, catchAsync(async (req, res) => {
     const recipe = await Recipe.findById(req.params.id);
-    const comment = new Comment(req.body);
+    console.log(recipe);
+    const comment = new Comment(req.body.comment);
     recipe.comments.push(comment);
     await comment.save();
     await recipe.save();
@@ -30,7 +31,7 @@ router.post("/", validateComment, catchAsync(async (req, res) => {
     res.redirect(`/recipes/${recipe._id}`);
 }))
 
-router.delete("/:commentId", catchAsync(async (req, res) => {
+router.delete("/:id/comments/:commentId", catchAsync(async (req, res) => {
     const { id, commentId } = req.params;
     await Recipe.findByIdAndUpdate(id, { $pull: { comments: commentId } });
     await Comment.findByIdAndDelete(commentId);
