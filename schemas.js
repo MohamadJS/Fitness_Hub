@@ -16,7 +16,15 @@ module.exports.foodDiarySchema = Joi.object({
 module.exports.recipeSchema = Joi.object({
     recipe: Joi.object({
         title: Joi.string().required(),
-        image: Joi.string().required(),
+        // image: Joi.object({
+        //     // fieldname: Joi.string(),
+        //     // originalname: Joi.string(),
+        //     // encoding: Joi.string(),
+        //     // mimetype: Joi.string(),
+        //     // path: Joi.string().required(),
+        //     // size: Joi.number(),
+        //     // filename: Joi.string().required()
+        // }).required(),
         ingredients: Joi.string().required(),
         body: Joi.string().required(),
     }).required()

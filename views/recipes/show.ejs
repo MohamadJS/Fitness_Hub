@@ -20,7 +20,7 @@
             <a class="link" href="/recipes">Back</a>
             <div class="post">
                 <h1 class="post-title"><%= recipe.title %></h1>
-                <img class="post-image" src="<%= recipe.image %>" alt="">
+                <img class="post-image" src="<%= recipe.image.url %>" alt="">
                 <div class="post-main">
                     <h2 class="recipe-title"><%= recipe.title %></h2>
                         <div class="ingredients-div">
@@ -34,20 +34,28 @@
                             <p class="post-directions" id="just-line-break"><%= recipe.body %></p>
                         </div>
                     </div>
+                <% if(currentUser && recipe.author.equals(currentUser._id)) { %> 
                 <a href="/recipes/<%= recipe._id %>/edit">Edit</a>
+                <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="post"><button class="button button-delete">Delete</button></form>
+                <% } %> 
             </div>
             <div class="comments-div">
                 <h2 class="comments-title">Comments</h2>
+                <% if(currentUser && recipe.author.equals(currentUser._id)) {%> 
                 <form class="comments-form" action="/recipes/<%= recipe._id %>/comments" method="POST">
                     <textarea name="comment[body]" id="comment" cols="90" rows="3" placeholder="Leave a Comment..." required></textarea>
                     <button class="button">Comment</button>
                 </form>
+                <% } %> 
                 <% for(let comment of recipe.comments) { %> 
                     <div class="comment">
                         <p class="comment-body"><%= comment.body %></p>
+                        <p class="comment-author"><%= comment.author.username %></p>
+                        <% if(currentUser && comment.author.equals(currentUser._id)) {%> 
                         <form action="/recipes/<%= recipe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
                             <button class="button button-delete">Delete</button>
                         </form>
+                        <% } %> 
                     </div>
                 <% } %> 
             </div>

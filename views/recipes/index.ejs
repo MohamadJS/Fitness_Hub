@@ -18,16 +18,16 @@
     <main>
         <div class="container-main">
                 <h1 class="title">Recipes</h1>
-                <a href="/recipes/new">New Recipe</a>
+                <a href="/recipes/new">Post Recipe</a>
             <div class="post">
                     <% for (let recipe of recipes) {%>
-                        <figure class="textover">
-                            <a href="recipes/<%= recipe._id %>">
-                                <img class="thumbnail" src="<%= recipe.image %>" alt="">
+                        <figure class="recipe">
+                                <img class="thumbnail" src="<%= recipe.image.thumbnail %>" alt="">
                                 <h2><%= recipe.title %></h2>
-                            </a>
+                                <a class="link" href="/recipes/<%= recipe._id %>">View Recipe</a>
                         </figure>
                     <% } %>
+                    <div class="recipe-spacer"></div>
             </div>    
         </div>
     </main>

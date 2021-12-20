@@ -20,14 +20,15 @@
             <a class="link" href="/recipes">Back</a>
             <div class="form-container">
                 <h1>Share a Recipe!</h1>
-                <form action="/recipes/new" method="POST">
+                <form action="/recipes/new" method="POST" enctype="multipart/form-data">
                     <div class="form-item">
                         <label for="title">Recipe Name:</label>
                         <input id="title" type="text" name ="recipe[title]" placeholder="ex. Egg Sandwich" autocorrect="off" autocomplete="off" required >
                     </div>
                     <div class="form-item">
                         <label for="img">Image:</label>
-                        <input id="img" type="img" name="recipe[image]" placeholder="img.com/1235.png" autocomplete="off" required >
+                        <!-- <input id="img" type="img" name="recipe[image]" placeholder="img.com/1235.png" autocomplete="off" required > -->
+                        <input type="file" name="image" id="img" required>
                     </div>
                     <div class="form-item">
                         <label for="ingredients">Ingredients:</label>

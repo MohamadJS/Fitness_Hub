@@ -20,14 +20,15 @@
             <a class="link" href="/recipes/<%= recipe._id %>">Back</a>
             <div class="form-container">
                 <h1>Edit Recipe</h1>
-                <form action="/recipes/<%= recipe._id %>/edit?_method=PUT" method="POST">
+                <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                     <div class="form-item">
                         <label for="title">Recipe Name</label>
                         <input id="title" type="text" name ="recipe[title]" placeholder="ex. Apple Pie" autocorrect="off" autocomplete="off" value="<%= recipe.title %>" required >
                     </div>
                     <div class="form-item">
                         <label for="img">Image</label>
-                        <input id="img" type="img" name="recipe[image]" placeholder="img.com/1235.png" autocomplete="off" value="<%= recipe.image %>" required >
+                        <!-- <input id="img" type="img" name="recipe[image]" placeholder="img.com/1235.png" autocomplete="off" value="<%= recipe.image %>" required > -->
+                        <input type="file" name="image" id="img">
                     </div>
                     <div class="form-item">
                         <label for="ingredients">Ingredients:</label>

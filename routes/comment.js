@@ -2,28 +2,15 @@ const express = require("express");
 const router = express.Router();
 const Recipe = require("../models/recipes");
 const Comment = require("../models/comment");
-const { commentSchema } = require("../schemas");
 const catchAsync = require("../utils/catchAsync");
-const ExpressError = require("../utils/ExpressError");
-
-// Middleware
-const validateComment = (req, res, next) => {
-    const { error } = commentSchema.validate(req.body);
-
-    if (error) {
-        const msg = error.details.map(el => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    }
-    else {
-        next();
-    }
-}
+const { isLoggedIn, validateComment, isCommentAuthor } = require("../middleware");
 
 // Routes
-router.post("/:id/comments", validateComment, catchAsync(async (req, res) => {
+router.post("/:id/comments", isLoggedIn, validateComment, catchAsync(async (req, res) => {
     const recipe = await Recipe.findById(req.params.id);
     console.log(recipe);
     const comment = new Comment(req.body.comment);
+    comment.author = req.user._id;
     recipe.comments.push(comment);
     await comment.save();
     await recipe.save();
@@ -31,7 +18,7 @@ router.post("/:id/comments", validateComment, catchAsync(async (req, res) => {
     res.redirect(`/recipes/${recipe._id}`);
 }))
 
-router.delete("/:id/comments/:commentId", catchAsync(async (req, res) => {
+router.delete("/:id/comments/:commentId", isLoggedIn, isCommentAuthor, catchAsync(async (req, res) => {
     const { id, commentId } = req.params;
     await Recipe.findByIdAndUpdate(id, { $pull: { comments: commentId } });
     await Comment.findByIdAndDelete(commentId);

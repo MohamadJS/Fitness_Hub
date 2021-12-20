@@ -105,7 +105,7 @@ textarea {
 .comments-form textarea {
     max-width: 756px;
     width: 100%;
-    margin-bottom: 0.5rem;
+    /* margin-bottom: 0.5rem; */
     padding: 0.5rem;
     box-sizing: border-box;
     border-color: #2289ff;
@@ -116,17 +116,24 @@ textarea {
 }
 
 .comment {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
+    margin: 1rem 0 ;
+    padding: 0.5rem 0;
     box-sizing: border-box;
     border-bottom: 1px solid lightgray;
+    word-wrap: break-word;
 }
 
 .comment-body {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.comment-author {
+    color: #2289ffbb;
+    /* margin-bottom: 0.5rem; */
 }
 
 .button {
+    margin-top: 0.5rem;
     padding: 0.5rem 0.75rem;
     color: white;
     background-color: #2289ff;
