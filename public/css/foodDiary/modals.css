@@ -69,7 +69,6 @@
 .nutrients-tab {
     width: 100%;
     text-align: center;
-    height: 100%;
 }
 
 .edit {
@@ -101,6 +100,14 @@
     width: 100%;
     margin: 0 1em;
     box-sizing: border-box;
+}
+
+.nutrient-container:first-of-type {
+    margin-left: 0;
+}
+
+.nutrient-container:nth-of-type(2) {
+    margin-right: 0;
 }
 
 .container-modal > p {

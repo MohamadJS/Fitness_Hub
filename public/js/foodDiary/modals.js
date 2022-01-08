@@ -139,7 +139,7 @@ servingSize.addEventListener("change", e => {
     }
 })
 
-// Update amount per serving.
+// Update amount per serving. (Number of Servings)
 
     amountInput.addEventListener("input", e => {
         if (e.target.value < 0) e.target.value = 1;
@@ -158,7 +158,7 @@ servingSize.addEventListener("change", e => {
         }
         else {
             for (let i = 0; i < nutrients.length; i++) {
-                nutrients[i].innerText = (Math.round((parseInt(foodPortion.value) / previousOption) * previousNutrients[i] * e.target.value));
+                nutrients[i].innerText = (Math.round((parseInt(servingSize.value) / previousOption) * previousNutrients[i] * e.target.value));
             }
         }
         // console.log(e.target.value);
@@ -177,5 +177,5 @@ for (nutrient of nutrients) {
 }
 
 for (let i = 0; i < nutrients.length; i++) {
-    nutrients[i].innerText = (Math.round((parseInt(foodPortion.value) / previousOption) * previousNutrients[i] * amountInput.value));
+    nutrients[i].innerText = (Math.round((parseInt(servingSize.value) / previousOption) * previousNutrients[i] * amountInput.value));
 }

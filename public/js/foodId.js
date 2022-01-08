@@ -58,14 +58,11 @@ function displayRes(data) {
 
     for (let i = 0; i < data.foods.length; i++) {
       const div = document.createElement("div");
-      const li = document.createElement("li");
       const a = document.createElement("a");
       a.innerText = `${data.foods[i].description}` //fdcId
       // a.setAttribute("href", `/api/${data.foods[i].description.replace("%", "%25")}?id=${data.foods[i].fdcId}`)
       a.setAttribute("href", `/food/${data.foods[i].fdcId}`);
-      li.append(a);
-      div.append(li);
-      searchDiv.append(div);
+      searchDiv.append(a);
   }
 }
 

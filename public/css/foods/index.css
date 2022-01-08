@@ -1,0 +1,141 @@
+.container-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.page-subtitle {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+    width: 760px;
+    box-sizing: border-box;
+    align-self: center;
+}
+
+.search a {
+    border-bottom: 1px solid lightgrey;
+    color: grey;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: block;
+    padding: 1rem 0;
+    transition: color 100ms ease-in-out;
+}
+
+.search a:hover, .search a:focus {
+    color: #2289ff;
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.search-empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-form {
+    margin-bottom: 2.5rem;
+}
+
+form {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* input[type=text] {
+    padding: 0.25rem;
+    width: 40%;
+} */
+
+.button {
+    padding: 0.35rem 0.75rem;
+    color: white;
+    background-color: #2289ff;
+    border: none;
+    border-radius: 0.125rem;
+    cursor: pointer;
+    transition: background-color 100ms ease-in;
+}
+
+.button:hover, .button:focus {
+    background-color: #1c7be7;
+}
+
+/* .search-form {
+    width: 75%;
+    margin: 0 auto;
+} */
+
+.search-box {
+    /* background: #2f3640; */
+    background: white;
+    height: 2.5rem;
+    border-radius: 2.5rem;
+    padding: 10px;
+    box-shadow: 0em 0em 1.5em 0.1em #0000006e;
+    margin-top: 3rem;
+    /* width: 50%; */
+}
+
+/* .searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+} */
+
+/* .searchBox:hover > .searchButton {
+  background: white;
+  color : #2f3640;
+} */
+
+.search-button {
+    color: #2289ff;
+    float: right;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    background: white;
+    border: none;
+    cursor: pointer;
+    transition: color 150ms ease-in-out;
+}
+
+.search-input {
+    border:none;
+    background: none;
+    outline: none;
+    float:left;
+    color: black;
+    font-size: 1rem;
+    line-height: 2.5rem;
+    width: 100%;
+    padding: 0 0.5rem;
+}
+
+.search-icon {
+    transform: scaleX(-1);
+    font-size: 3.25rem;
+}
+
+.search-button:hover, .search-button:focus {
+    color: #1c7be7;
+}

@@ -41,7 +41,7 @@
             </div>
             <div class="comments-div">
                 <h2 class="comments-title">Comments</h2>
-                <% if(currentUser && recipe.author.equals(currentUser._id)) {%> 
+                <% if(currentUser) {%> 
                 <form class="comments-form" action="/recipes/<%= recipe._id %>/comments" method="POST">
                     <textarea name="comment[body]" id="comment" cols="90" rows="3" placeholder="Leave a Comment..." required></textarea>
                     <button class="button">Comment</button>

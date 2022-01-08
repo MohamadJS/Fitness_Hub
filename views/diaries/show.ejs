@@ -16,9 +16,13 @@
     <%- include("../partials/flash") %> 
     <h1>Food Diary</h1>
     <div>
-        <% for(diary of foodDiary) { %> 
-        <a href="/diary/<%= diary.date %>"><%= diary.date %></a>
-        <% } %> 
+        <!-- Change this to a date picker, add event listener to change href via JS -->
+        <select name="date" id="date">
+            <% for(diary of foodDiary) { %> 
+                <option value="<%= diary.date %>"><%= diary.date %></option>
+            <% } %> 
+        </select>
     </div>
+    <script src="/js/foodDiary/show.js"></script>
 </body>
 </html>

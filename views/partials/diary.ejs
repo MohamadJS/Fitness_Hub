@@ -1,20 +1,76 @@
+<div class="modal-add modal">
+    <div class="modal-content-add">
+        <span class="close-button-add">×</span>
+        <h1 class="modal-title">Add Food</h1>
+        <div class="modal-container">
+            <div class="nutrients-tab">
+                <div class="search-image">
+                    <h2>Search for Food</h2>
+                    <img src="../icons/Search engines.gif" alt="search">
+                </div>
+                <div class="container-left">
+                    <div class="nutrient-container"></div>
+                    <div class="nutrient-container"></div>
+                </div>
+            </div>
+            <div class="edit">
+                <!-- <form action="/diary/<%= foodDiary.date %>" id="search-form">
+                    <input type="text" name="food" id="search" autocomplete="off">
+                    <button class="button-two">Search</button>
+                </form> -->
+                    <form action="/diary/<%= foodDiary.date %>" class="search-box" id="search-form">
+                      <input class="search-input" type="text" name="food" placeholder="Apple" id="search" autocomplete="off">
+                      <button class="search-button" href="#">
+                        <i class="search-icon">&#8981;</i>
+                      </button>
+                    </form>
+                <form action="/diary" method="POST" class="servings hidden">
+                    <input type="hidden" name="foodName" id="food-name" required>
+                    <input type="hidden" name="servingSize" id="serving-size" value="100g" required>
+                    <input type="hidden" name="fdcId" id="food-id" required>
+                    <input type="hidden" name="date" id="date" value="<%= foodDiary.date %>">
+                    <div>
+                        <select name="meal" id="meal">
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                            <option value="snack">Snack</option>
+                        </select>
+                    </div>
+                    <label for="food-portion">Serving Size</label>
+                    <select name="grams" id="food-portion"></select>
+                    <div class="amount">
+                        <label for="amount">Number of Servings</label>
+                        <input type="number" name="amount" id="amount" value="1" min="0" step=".01" required>
+                    </div>
+                    <button class="button-two">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
+    <div class="date-div">
+        <button class="previous arrow">&#x2B05;</button>
+        <input type="date" name="date-selector" id="date-selector" value="<%= foodDiary.date %>">
+        <button class="next arrow">&#x2B95;</button>
+    </div>
     <div class="diary">
         <div class="diary-container">
             <h1 class="diary-title">Food Diary - <span class="date"><%= foodDiary.date %></span></h1>
             <div class="wrapper">
                 <div class="diary-item">
                     <h2>Breakfast</h2>
-                    <% if(!foodDiary.food.breakfast[0]) { %> 
+                    <% //if(!foodDiary.food.breakfast[0]) { %> 
                     <!-- Total calories, add totalCal to the foodDiarySchema, do logic inside the new route.-->
                     <!-- Instead of putting if statement above, just put the foodDiary.food.breakfast.totalCal in h2 -->
                     <!-- <h2>0 Cal</h2> -->
-                    <% } %> 
+                    <% //} %> 
                 <% for(food of foodDiary.food.breakfast) { %> 
                     <div class="flex">
                         <div class="food">
                             <p class="food-name"><%= food.foodName %></p>
-                            <p class="servings"><%= food.servingSize %></p>
+                            <p class="servings"><%= food.servingSize %> (<%= food.amount %> <%= food.amount > 1 ? "servings" : "serving" %>)</p>
                         </div>
                         <div class="food-options">
                             <p class="calories">150</p>
@@ -23,7 +79,7 @@
                         </div>
                     </div>
                 <% } %> 
-                    <button class="trigger">Add Food</button>
+                    <button class="trigger" value="breakfast">Add Food</button>
                 </div>
                 <div class="diary-item">
                 <h2>Lunch</h2>
@@ -31,7 +87,7 @@
                     <div class="flex">
                         <div class="food">
                             <p class="food-name"><%= food.foodName %></p>
-                            <p class="servings"><%= food.servingSize %></p>
+                            <p class="servings"><%= food.servingSize %> (<%= food.amount %> <%= food.amount > 1 ? "servings" : "serving" %>)</p>
                         </div>
                         <div class="food-options">
                             <p class="calories">150</p>
@@ -40,13 +96,7 @@
                         </div>
                     </div>
                 <% } %> 
-                <button class="trigger">Add Food</button>
-                    <div class="modal-add">
-                        <div class="modal-content-add">
-                            <span class="close-button-add">×</span>
-                            <h1>Add Food</h1>
-                        </div>
-                    </div>
+                <button class="trigger" value="lunch">Add Food</button>
                 </div>
             </div>
             <div class="wrapper">
@@ -56,7 +106,7 @@
                         <div class="flex">
                             <div class="food">
                                 <p class="food-name"><%= food.foodName %></p>
-                                <p class="servings"><%= food.servingSize %></p>
+                                <p class="servings"><%= food.servingSize %> (<%= food.amount %> <%= food.amount > 1 ? "servings" : "serving" %>)</p>
                             </div>
                             <div class="food-options">
                                 <p class="calories">150</p>
@@ -65,7 +115,7 @@
                             </div>
                         </div>
                     <% } %> 
-                    <button class="trigger">Add Food</button>
+                    <button class="trigger" value="dinner">Add Food</button>
                     </div>
                     <div class="diary-item">
                     <h2>Snacks</h2>
@@ -73,7 +123,7 @@
                         <div class="flex">
                             <div class="food">
                                 <p class="food-name"><%= food.foodName %></p>
-                                <p class="servings"><%= food.servingSize %></p>
+                                <p class="servings"><%= food.servingSize %> (<%= food.amount %> <%= food.amount > 1 ? "servings" : "serving" %>)</p>
                             </div>
                             <div class="food-options">
                                 <p class="calories">150</p>
@@ -82,7 +132,7 @@
                             </div>
                         </div>
                     <% } %> 
-                    <button class="trigger">Add Food</button>
+                    <button class="trigger" value="snack">Add Food</button>
                     </div>
             </div>
         </div>

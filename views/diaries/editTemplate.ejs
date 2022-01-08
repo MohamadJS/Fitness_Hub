@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Diary</title>
+    <link rel="stylesheet" href="../css/partials/header.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="../css/foodDiary/modals.css">
+    <link rel="stylesheet" href="../css/foodDiary/edit.css">
+</head>
+<body>
+    <%- include("../partials/header") %> 
+    <%- include("../partials/flash") %> 
+    <main>
+        <div class="modal-add modal">
+            <div class="modal-content-add">
+                <span class="close-button-add">×</span>
+                <h1 class="modal-title">Add Food</h1>
+                <div class="modal-container">
+                    <div class="nutrients-tab">
+                        <div class="search-image">
+                            <h2>Search for Food</h2>
+                            <img src="../icons/Search engines.gif" alt="search">
+                        </div>
+                        <div class="container-left">
+                            <div class="nutrient-container"></div>
+                            <div class="nutrient-container"></div>
+                        </div>
+                    </div>
+                    <div class="edit">
+                        <form action="/diary/<%= date %>" id="search-form">
+                            <input type="text" name="food" id="search" autocomplete="off">
+                            <button class="button-two">Search</button>
+                        </form>
+                        <form action="/diary" method="POST" class="servings hidden">
+                            <input type="hidden" name="foodName" id="food-name" required>
+                            <input type="hidden" name="servingSize" id="serving-size" value="100g" required>
+                            <input type="hidden" name="fdcId" id="food-id" required>
+                            <input type="hidden" name="date" id="date" value="<%= date %>">
+                            <div>
+                                <select name="meal" id="meal">
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="dinner">Dinner</option>
+                                    <option value="snack">Snack</option>
+                                </select>
+                            </div>
+                            <label for="food-portion">Serving Size</label>
+                            <select name="grams" id="food-portion"></select>
+                            <div class="amount">
+                                <label for="amount">Number of Servings</label>
+                                <input type="number" name="amount" id="amount" value="1" min="0" step=".01" required>
+                            </div>
+                            <button class="button-two">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="date-div">
+                <button class="previous arrow">&#x2B05;</button>
+                <input type="date" name="date-selector" id="date-selector" value="<%= date %>">
+                <button class="next arrow">&#x2B95;</button>
+            </div>
+            <div class="diary">
+                <div class="diary-container">
+                    <h1 class="diary-title">Food Diary - <span class="date"><%= date %></span></h1>
+                    <div class="wrapper">
+                        <div class="diary-item">
+                            <h2>Breakfast</h2>
+                            <button class="trigger" value="breakfast">Add Food</button>
+                        </div>
+                        <div class="diary-item">
+                        <h2>Lunch</h2>
+                        <button class="trigger" value="lunch">Add Food</button>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <div class="diary-item">
+                            <h2>Dinner</h2>
+                            <button class="trigger" value="dinner">Add Food</button>
+                            </div>
+                            <div class="diary-item">
+                            <h2>Snacks</h2>
+                            <button class="trigger" value="snack">Add Food</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="\js\edit.js"></script>
+    </main>
+    <script src="/js/foodDiary/addFood.js"></script>
+</body>
+</html>

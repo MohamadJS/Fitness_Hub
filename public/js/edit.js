@@ -85,4 +85,32 @@ const modalAdd = document.querySelector(".modal-add");
     for (triggers of triggerAdd) 
         triggers.addEventListener("click", toggleModal);
     closeButtonAdd.addEventListener("click", toggleModal);
-    window.addEventListener("click", windowOnClick);
+
+const next = document.querySelector(".next");
+const prev = document.querySelector(".previous");
+const dateSelector = document.querySelector("#date-selector");
+
+next.addEventListener("click", () => {
+    const dateVal = new Date((new Date(Date.parse(dateSelector.value))).valueOf() + 86400000 + 86400000);
+    updatePage(dateVal);
+    // const newDateVal = new Date(dateVal);
+    // console.log(newDateVal);
+    // const newUrl = newDateVal.getFullYear() + '-' + ((newDateVal.getMonth() + 1) < 10 ? '0' + (newDateVal.getMonth() + 1) : (newDateVal.getMonth() + 1)) + '-' + (newDateVal.getDate() < 10 ? '0' + newDateVal.getDate() : newDateVal.getDate());
+    // window.location.href = (window.location.origin += `/diary/${newUrl}`);
+})
+
+prev.addEventListener("click", () => {
+    const dateVal = new Date((new Date(Date.parse(dateSelector.value))).valueOf());
+    updatePage(dateVal);
+    // const newDateVal = new Date(dateVal);
+    // console.log(newDateVal);
+    // const newUrl = newDateVal.getFullYear() + '-' + ((newDateVal.getMonth() + 1) < 10 ? '0' + (newDateVal.getMonth() + 1) : (newDateVal.getMonth() + 1)) + '-' + (newDateVal.getDate() < 10 ? '0' + newDateVal.getDate() : newDateVal.getDate());
+    // window.location.href = (window.location.origin += `/diary/${newUrl}`);
+})
+
+function updatePage(value) {
+    const newDateVal = new Date(value);
+    console.log(newDateVal);
+    const newUrl = newDateVal.getFullYear() + '-' + ((newDateVal.getMonth() + 1) < 10 ? '0' + (newDateVal.getMonth() + 1) : (newDateVal.getMonth() + 1)) + '-' + (newDateVal.getDate() < 10 ? '0' + newDateVal.getDate() : newDateVal.getDate());
+    window.location.href = (window.location.origin += `/diary/${newUrl}`);
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api</title>
+    <link rel="stylesheet" href="../css/partials/header.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/foods/index.css">
+</head>
+<body>
+  <%- include("../partials/header") %> 
+  <%- include("../partials/flash") %> 
+    <main>
+      <div class="container-main">
+        <div class="page-title">
+          <h2 class="page-subtitle">Search for nutritional</h2>
+          <h2 class="page-subtitle">information about certain foods.</h2>
+        </div>
+          <div class="search-container">
+            <div class="search">
+              <div class="search-form">
+                <div class="search-box">
+                  <form action="/food" id="searchForm">
+                    <input class="search-input" type="text" name="search" id="searchFood" placeholder="Apple" autocomplete="off">
+                    <button class="search-button" href="#">
+                      <i class="search-icon">&#8981;</i>
+                    </button>
+                  </form>
+                </div>
+                <!-- <form action="/food" id="searchForm">
+                  <input
+                    type="text"
+                    name="search"
+                    id="searchFood"
+                    placeholder="ex. Apple"
+                    autocomplete="off"
+                    />
+                    <button class="button">Search</button>
+                </form> -->
+              </div>
+              <% if(!search) { %> 
+                <div class="search-empty">
+                  <p>Search for food!</p>
+                  <img src="../icons/Search engines.gif" alt="Search">
+                </div>
+              <% } %> 
+            </div>
+          </div>
+      </div>
+      </main>
+    <script src="\js\foodId.js"></script>
+</body>
+</html>
