@@ -3,7 +3,10 @@
 
 const input = document.querySelector("#searchForm");
 const searchDiv = document.querySelector(".search");
-const searchQuery = window.location.search.slice(8);
+// const searchQuery = window.location.search.slice(8);
+const urlParams = (new URL(document.location)).searchParams;
+const searchQuery = urlParams.get("search");
+
 
 // input.addEventListener("submit", async (e) => {
 // //   e.preventDefault();
@@ -68,7 +71,7 @@ function displayRes(data) {
 
 
 async function dataGrab() {
-  if (searchQuery) {
+  if (searchQuery && searchQuery.toString().trim()) {
     api_url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(
         params.api_key
       )}&query=${encodeURIComponent(

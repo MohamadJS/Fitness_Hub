@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="../css/food.css">
 </head>
-<body>
+<body class="preload">
   <%- include("../partials/header") %> 
   <%- include("../partials/flash") %> 
   <main>
@@ -36,12 +36,15 @@
       <div class="ss-container">
         <label for="food-portion">Serving Size </label>
         <select name="grams">
-          <option value="100" id="food-portion">Loading...</option>
+          <option value="100">100g</option>
+          <% for(let i = 0; i < data.foods[0].foodMeasures.length - 1; i++) { %> 
+            <option value="<%= data.foods[0].foodMeasures[i].gramWeight %>"><%= data.foods[0].foodMeasures[i].disseminationText %></option>
+          <% } %> 
         </select>
       </div>
       <div class="amount">
         <label for="amount">Number of Servings </label>
-        <input type="number" name="amount" id="amount" value="1" min="0" required>
+        <input type="number" name="amount" id="amount" value="1" min="0" max="1000" step="0.1" required>
       </div>
       <div class="center">
         <% if(currentUser) { %> 
@@ -60,7 +63,7 @@
           <div class="nutrient-container">
             <% for (let i = 0; i < 9; i++) { %> 
               <p class="item">
-                <%= data.foods[0].foodNutrients[arrayPosition[i]].nutrientName %> 
+                <%= arrayNames[i] %> 
                 <span class="unit">
                   <span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value) %></span><span><%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></p>
                 </span>
@@ -68,7 +71,7 @@
           </div>
           <div class="nutrient-container">
             <% for (let i = 9; i < 16; i++) { %> 
-              <p class="item"><%= data.foods[0].foodNutrients[arrayPosition[i]].nutrientName %> 
+              <p class="item"><%= arrayNames[i] %> 
                 <span><span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value)%></span><span>
                   <%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></span>
                 </p>
@@ -79,5 +82,6 @@
   </main>
     <!-- <script src="\js\foodInfo.js"></script> -->
     <script src="\js\food.js"></script>
+    <script src="/js/animation.js"></script>
 </body>
 </html>

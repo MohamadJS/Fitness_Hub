@@ -139,3 +139,18 @@ form {
 .search-button:hover, .search-button:focus {
     color: #1c7be7;
 }
+
+@media (max-width: 800px) {
+    .search {
+        width: 500px;
+    }
+}
+
+@media (max-width: 530px) {
+    .search {
+        width: 350px;
+    }
+    .search-empty img{
+        max-width: 350px;
+    }
+}

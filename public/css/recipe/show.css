@@ -34,8 +34,8 @@ textarea {
 
 .post-image {
     margin: 0 auto;
-    max-width: 756px;
-    min-width: 756px;
+    max-width: 100%;
+    min-width: 100%;
     max-height: 756px;
     min-height: 0px;
 }
@@ -190,3 +190,27 @@ textarea {
     flex-direction: column;
     box-sizing: border-box;
 } */
+
+@media (max-width:780px) {
+    .post {
+        max-width: 500px;
+        min-width: 500px;
+    }
+
+    .comments-div {
+        max-width: 500px;
+        min-width: 500px;
+    }
+}
+
+@media (max-width: 524px) {
+    .post {
+        max-width: 350px;
+        min-width: 350px;
+    }
+
+    .comments-div {
+        max-width: 350px;
+        min-width: 350px;
+    }
+}

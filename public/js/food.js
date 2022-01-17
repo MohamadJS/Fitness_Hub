@@ -81,7 +81,7 @@ async function displayOptions() {
         previousNutrients[i] = data[0].foodNutrients[nutrientLabels[i].sub].amount;
     }
 }
-displayOptions();
+// displayOptions();
 
 const nutrients = document.querySelectorAll(".nutrients");
 const servingSize = document.querySelector("select");
@@ -92,29 +92,45 @@ let previousOption = 100;
 const foodAmt = document.querySelector("#serving-size");
 
 // Serving Size Calculator
+// servingSize.addEventListener("change", e => {
+//     for (let i = 0; i < nutrients.length; i++) {
+//         nutrients[i].innerText = (Math.round((parseInt(e.target.value) / previousOption) * previousNutrients[i] * amountInput.value));
+//     }
+//     console.log(e);
+//     console.log(e.target.innerText);
+//     foodAmt.value = e.target.options[e.target.selectedIndex].text;
+// })
+
+const initialNutrients = [];
+
+for (let i = 0; i < nutrients.length; i++) {
+    initialNutrients[i] = nutrients[i].innerText;
+}
+
 servingSize.addEventListener("change", e => {
     for (let i = 0; i < nutrients.length; i++) {
-        nutrients[i].innerText = (Math.round((parseInt(e.target.value) / previousOption) * previousNutrients[i] * amountInput.value));
+        nutrients[i].innerText = Math.round(parseInt(e.target.value) / 100 * initialNutrients[i] * amountInput.value);
     }
-    // console.log(e);
-    // console.log(e.target.innerText);
-    foodAmt.value = e.target.options[e.target.selectedIndex].text;
 })
 
 // Amount per Serving Calculator
 const amountInput = document.querySelector("#amount");
 
-amountInput.addEventListener("input", e => {
-    if (e.target.value < 0) e.target.value = 1;
-    console.log(e.target.value);
-})
+// amountInput.addEventListener("input", e => {
+//     if (e.target.value < 0) e.target.value = 1;
+//     console.log(e.target.value);
+// })
 
-amountInput.addEventListener("change", e => {
-    if (e.target.value <= 0 || e.target.value === undefined) e.target.value = 1;
-    if (!e.target.value) e.target.value = 1;
+amountInput.addEventListener("input", e => {
+    // if (e.target.value <= 0 || e.target.value === undefined) e.target.value = 1;
+    // if (!e.target.value) e.target.value = 1;
     console.log(nutrients[0]);
+    if(e.target.value > 1000) {
+        e.target.value = 1000;
+        return;
+    } 
     for (let i = 0; i < nutrients.length; i++) {
-        nutrients[i].innerText = (Math.round((parseInt(servingSize.value) / previousOption) * previousNutrients[i] * e.target.value));
+        nutrients[i].innerText = Math.round((servingSize.value / 100) * initialNutrients[i] * e.target.value);
     }
     console.log(e.target.value);
 

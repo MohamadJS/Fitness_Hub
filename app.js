@@ -14,6 +14,8 @@ const ExpressError = require("./utils/ExpressError");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
+const catchAsync = require("./utils/catchAsync");
+const Recipe = require("./models/recipes");
 
 const userRoutes = require("./routes/user");
 const diaryRoutes = require("./routes/foodDiary");
@@ -71,13 +73,20 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", (req, res) => {
+app.get("/", catchAsync(async (req, res) => {
     // Send style sheet location and title of page to boilerplate.
     const style = "\\css\\app.css";
     const title = "Fitness Hub";
-    res.render("index", { style, title });
+    const recipes = await Recipe.find({});
+    res.render("index", { recipes, style, title });
+}))
+
+app.get("/about", (req, res) => {
+    res.render("about");
 })
 
+
+// remove this later
 app.get("/nutrition", (req, res) => {
     res.render("nutrition");
 })

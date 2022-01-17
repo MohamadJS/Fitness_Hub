@@ -27,8 +27,8 @@
             <h2>expectations.</h2>
           </div>
           <div class="motto-descrip">
-            <p>Track your macros, calories, vitamins, and overall nutrition</p>
-            <p>in foods all through Fitness Hub to meet your desired goals.</p>
+            <p>Track your macros, calories, vitamins, and overall nutrition
+            in foods all through Fitness Hub to meet your desired goals.</p>
           </div>
         </div>
         <div class="eat-right">
@@ -79,26 +79,44 @@
               </div>
             </div>
         </div>
-        <h2 class="benefits-title">Benefits of Fitness Hub</h2>
-        <div class="container-benefits">
-          <div class="panel-advantage">
-            <img src="icons/Eating healthy food 2.gif" alt="">
-            <h3>Health</h3>
-            <p>Get an understanding of why certain foods may not fit in your lifestyle, to better suit your goals.</p>
+        <div class="benefits-div">
+          <h2 class="benefits-title">Benefits of Fitness Hub</h2>
+          <div class="container-benefits">
+            <div class="panel-advantage">
+              <img src="icons/Eating healthy food 2.gif" alt="">
+              <h3>Health</h3>
+              <p>Get an understanding of why certain foods may not fit in your lifestyle, to better suit your goals.</p>
+            </div>
+            <div class="panel-advantage">
+              <img src="icons/Diet 2.gif" alt="">
+              <h3>Progression</h3>
+              <p>Finally see results by getting the right amount of nutrition.</p>
+            </div>
+            <div class="panel-advantage">
+              <img src="icons/Personal Trainer 2.gif" alt="">
+              <h3>Motivation</h3>
+              <p> Stay motivated by tracking what you eat, and learn your eating habits.</p>
+            </div>
           </div>
-          <div class="panel-advantage">
-            <img src="icons/Diet 2.gif" alt="">
-            <h3>Progression</h3>
-            <p>Finally see results by getting the right amount of nutrition.</p>
-          </div>
-          <div class="panel-advantage">
-            <img src="icons/Personal Trainer 2.gif" alt="">
-            <h3>Motivation</h3>
-            <p> Stay motivated by tracking what you eat, and learn your eating habits.</p>
+          <div class="benefits-button">
+            <a href="/signup" class="start-button">Start Now</a>
           </div>
         </div>
-        <div class="benefits-button">
-          <a href="/signup" class="start-button">Start Now</a>
+        <div class="recipe-div">
+          <div class="recipe-content">
+            <h2 class="recipe-title-div">Fitness Hub Recipes</h2>
+            <div class="post">
+              <% for (let i = 0; i < 3; i++) {%>
+                  <figure class="recipe">
+                          <img class="thumbnail" src="<%= recipes[i].image.thumbnail %>" alt="">
+                          <div class="recipe-title-div-2">
+                              <h2 class="recipe-title"><%= recipes[i].title %></h2>
+                          </div>
+                          <a class="link" href="/recipes/<%= recipes[i]._id %>">View Recipe</a>
+                  </figure>
+              <% } %>
+      </div>  
+          </div>
         </div>
       <!-- <div class="container-middle">
         <div class="motto-container">

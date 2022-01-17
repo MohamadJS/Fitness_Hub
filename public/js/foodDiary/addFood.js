@@ -132,7 +132,7 @@ function itemListener() {
     li.forEach(function (item) {
         item.addEventListener("click", function() {
             // display food data for particular food here 
-            paramsV2.fdcId = item.value + "";
+            paramsV2.query = item.value + "";
             getAndDisplayFoodInfo();
             console.log(item.value);
         })
@@ -146,29 +146,45 @@ function itemListener() {
 }
 
 
+// const paramsV2 = {
+//     api_key: "baxUmQv1cwFdluJZ6Y6v1BLwLU9ibtQUfiJLUeX3",
+//     fdcId: "",
+//     nutrients: [208, 203, 204, 205, 291, 269, 301, 303, 306, 307, 401, 320, 606, 645, 646, 601],
+//     // label: ["cal", "prot", "fat", "carbs", "fiber", "sugar", "calcium", "iron", "magnesium", "potassium",
+//     // "sodium", "vitmain c", "vitamin a", "saturated fat", "monounsaturated fat", "polyunsaturated fat", "cholesterol"]
+// };
+
 const paramsV2 = {
     api_key: "baxUmQv1cwFdluJZ6Y6v1BLwLU9ibtQUfiJLUeX3",
-    fdcId: "",
-    nutrients: [208, 203, 204, 205, 291, 269, 301, 303, 306, 307, 401, 320, 606, 645, 646, 601],
-    // label: ["cal", "prot", "fat", "carbs", "fiber", "sugar", "calcium", "iron", "magnesium", "potassium",
-    // "sodium", "vitmain c", "vitamin a", "saturated fat", "monounsaturated fat", "polyunsaturated fat", "cholesterol"]
-};
-
+    query: "",
+    dataType: ["Survey (FNDDS)"],
+    pagesize: 1,
+    pageNumber: 1,
+  };
 
 
 // Individual Food That is clicked on. display its information.
 let food = null;
 const nutrientsContainer = document.querySelectorAll(".nutrient-container");
 
-// const arrayPosition = [3, 2, 9, 8, 1, 43, 64, 63, 0, 15, 14, 42, 20, 28, 10, 11];
-const arrayPosition = [0, 3, 4, 5, 2, 12, 14, 13, 1, 9, 8, 15, 11, 10, 6, 7]
+const arrayPosition = [3, 2, 9, 8, 1, 43, 64, 63, 0, 15, 14, 42, 20, 28, 10, 11];
+// const arrayPosition = [0, 3, 4, 5, 2, 12, 14, 13, 1, 9, 8, 15, 11, 10, 6, 7]
 const arrayNames = ["Calories", "Total Carbohydrate", "Total Fiber", "Sugar", "Fat", "Saturated Fat",
     "Polyunsaturated Fat", "Monounsaturated Fat", "Protein", "Sodium", "Potassium",
     "Cholesterol", "Vitamin A", "Vitamin C", "Calcium", "Iron"];
 
+// Change this to original API Call to load serving sizes faster.
+
 async function getAndDisplayFoodInfo() {
-    const api_url_v2 = `https://api.nal.usda.gov/fdc/v1/foods?api_key=${paramsV2.api_key
-}&fdcIds=${paramsV2.fdcId}&nutrients=${paramsV2.nutrients}`; 
+//     const api_url_v2 = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${paramsV2.api_key
+// }&fdcIds=${paramsV2.fdcId}&nutrients=${paramsV2.nutrients}`; 
+    const api_url_v2 = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(
+    paramsV2.api_key
+  )}&query=${encodeURIComponent(paramsV2.query)}&dataType=${encodeURIComponent(
+    paramsV2.dataType
+  )}&pageSize=${encodeURIComponent(
+    paramsV2.pagesize
+  )}&pageNumber=${paramsV2.pageNumber}`;
     food = await getData(api_url_v2);
     displayFoodInfo();
     console.log(food);
@@ -195,7 +211,7 @@ function displayFoodInfo() {
     updateButton();
 
     const h2 = document.createElement("h2");
-    h2.append(food[0].description);
+    h2.append(food.foods[0].description);
     h2.classList.add("food-title");
     nutrientsTab.prepend(h2);
     document.querySelector(".servings").classList.remove("hidden");
@@ -203,12 +219,12 @@ function displayFoodInfo() {
     // Set the form data to current food selected.
 
     const foodName = document.querySelector("#food-name");
-    foodName.value = food[0].description;
+    foodName.value = food.foods[0].description;
     const servingSizeInput = document.querySelector("#serving-size");
     servingSizeInput.value = `${servingSize.options[servingSize.selectedIndex].text}`;
 
     const fdcId = document.querySelector("#food-id");
-    fdcId.value = food[0].fdcId;
+    fdcId.value = food.foods[0].fdcId;
 
 }
 
@@ -223,10 +239,12 @@ function addElements(i) {
 
     const spanNutrients = document.createElement("span");
     spanNutrients.classList.add("nutrients");
-    spanNutrients.innerText = Math.round(food[0].foodNutrients[arrayPosition[i]].amount);
+    // spanNutrients.innerText = Math.round(food[0].foodNutrients[arrayPosition[i]].amount);
+    spanNutrients.innerText = Math.round(food.foods[0].foodNutrients[arrayPosition[i]].value)
 
     const spanUnit = document.createElement("span");
-    spanUnit.innerText = food[0].foodNutrients[arrayPosition[i]].nutrient.unitName.toLowerCase();
+    // spanUnit.innerText = food[0].foodNutrients[arrayPosition[i]].nutrient.unitName.toLowerCase();
+    spanUnit.innerText = food.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase();
         
     spanContainer.append(spanNutrients, spanUnit);
     p.append(arrayNames[i], spanContainer);
@@ -237,15 +255,15 @@ function addElements(i) {
 const servingSize = document.querySelector("#food-portion");
 const servingAmount = document.querySelector("#amount");
 function addServingSize() {
-    for (let i = -1; i < food[0].foodPortions.length - 1; i++) {
+    for (let i = -1; i < food.foods[0].foodMeasures.length - 1; i++) {
         const option = document.createElement("option");
         if (i === -1) {
             option.textContent = "100g";
             option.value = 100;
         }
         else {
-            option.textContent = `${food[0].foodPortions[i].portionDescription}`
-            option.value = parseInt(food[0].foodPortions[i].gramWeight);
+            option.textContent = `${food.foods[0].foodMeasures[i].disseminationText}`
+            option.value = parseInt(food.foods[0].foodMeasures[i].gramWeight);
         }
         option.classList.add("option");
         servingSize.append(option);
@@ -275,7 +293,7 @@ function removeOptions() {
 function addEvents() {
     servingSize.addEventListener("change", (e) => {
         console.log(e.target.value);
-        for (let i = 0; i < food[0].foodNutrients.length; i++) {
+        for (let i = 0; i < food.foods[0].foodNutrients.length; i++) {
             updateNutrients(e.target.value, servingAmount.value);
             // nutrientsSpan[i].textContent = `${Math.round(food[0].foodNutrients[arrayPosition[i]].amount * (e.target.value / 100) * servingAmount.value)}`;
         }
@@ -290,8 +308,8 @@ function addEvents() {
 
 function updateNutrients(servingSize, servingAmount) {
     const nutrientsSpan = document.querySelectorAll(".nutrients")
-    for (let i = 0; i < food[0].foodNutrients.length; i++) {
-        const value = Math.round(food[0].foodNutrients[arrayPosition[i]].amount * (servingSize / 100) * servingAmount);
+    for (let i = 0; i < arrayPosition.length; i++) {
+        const value = Math.round(food.foods[0].foodNutrients[arrayPosition[i]].value * (servingSize / 100) * servingAmount);
         nutrientsSpan[i].textContent = value;
     }
 }

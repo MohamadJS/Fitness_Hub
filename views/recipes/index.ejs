@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="/css/recipe/index.css">
 </head>
-<body>
+<body class="preload">
     <%- include("../partials/header") %> 
     <%- include("../partials/flash") %> 
     <main>
@@ -23,7 +23,9 @@
                     <% for (let recipe of recipes) {%>
                         <figure class="recipe">
                                 <img class="thumbnail" src="<%= recipe.image.thumbnail %>" alt="">
-                                <h2><%= recipe.title %></h2>
+                                <div class="recipe-title-div">
+                                    <h2 class="recipe-title"><%= recipe.title %></h2>
+                                </div>
                                 <a class="link" href="/recipes/<%= recipe._id %>">View Recipe</a>
                         </figure>
                     <% } %>
@@ -31,5 +33,6 @@
             </div>    
         </div>
     </main>
+    <script src="/js/animation.js"></script>
 </body>
 </html>

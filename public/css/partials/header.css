@@ -138,12 +138,17 @@ nav {
     font-size: 1.25em;
     padding: .75rem .75rem;
     color: white;
+    transition: color 500ms, border-bottom 500ms;
 }
 
-.nav-option a:hover {
-    color: rgb(255, 174, 0);
+.nav-option:hover a, .nav-option:focus a {
+    /* color: rgb(255, 174, 0);
     color: #bcdbfc;
-    color: #ebcf35;
+    color: #ebcf35; */
+    /* padding-bottom: 0.5rem; */
+    color: #ffae00;
+    border-bottom: 1px solid #ffae00;
+    /* border-bottom: 1px solid #080808; */
 }
 
 /* @media (max-width: 1199px ) {
@@ -154,7 +159,12 @@ nav {
 
 html, body {
     overflow-x: hidden;
-  }
-  body {
+}
+
+body {
     position: relative
-  }
+}
+
+body.preload *{
+    transition: none;
+}

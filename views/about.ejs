@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="\css\partials\header.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<body class="preload">
+    <%- include("./partials/header") %> 
+    <%- include("./partials/flash") %> 
+    <main>
+        <div class="container-main">
+            <div class="content-main">
+                <h1 class="page-title">Lose weight with Fitness Hub</h1>
+                <p class="page-content">
+                    Fitness Hub provides the tools you need to lose weight, keep it off and learn about
+                    your eating habits. The more you track your food the more likely you are to lose weight.
+                    Studies have proved the benefits that come with logging and keeping track of your food intake.
+                    Fitness Hub is made simple, so the more likely you are to stay on track, and the more likely
+                    you are to succeed in your weight loss journey. Join today - it's <span>Free!</span>
+                </p>
+                <h1 class="page-title">User friendly</h1>
+                <p class="page-content">
+                    Fitness Hub provides the most efficient and easy to use food diary on the web.
+                    Track your meals and food with a few simple clicks whether you are at work,
+                    home, or at dinner. Access recipes when you are looking for a healthy 
+                    snack or meal at any time and anywhere!
+                </p>
+            </div>
+            <div class="container-faq">
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-subtitle"><h3>What are the benefits?</h3><span class="arrow">⌄</span></div>
+                    <div class="answer-div">
+                        <p class="answer">
+                            Fitness Hub provides it's users with access to a food diary, posting recipes, and leaving comments.
+                            All of these benefits will keep you in track whether you are trying to lose, maintain or gain weight.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-subtitle"><h3>Where is the nutrition data coming from?</h3><span class="arrow">⌄</span></div>
+                    <p class="answer">
+                        The nutritional information and food data is coming from the Food Central Database 
+                        which is fetched with a Web API. Everything from the food list, to the food portions
+                        is attained from the API.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-subtitle"><h3>How do I log food?</h3><span class="arrow">⌄</span></div>
+                    <p class="answer">
+                        To add food to your diary, simply go to the Food page and log your foods, or you can add them 
+                        directly from the Food Log page. Access your logged foods in the Food Log page, where you can view
+                        each individual food and their nutritional information.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-subtitle"><h3>How can I get a recipe posted?</h3><span class="arrow">⌄</span></div>
+                    <p class="answer">
+                        Users have access to post recipes on the recipes page. To post a recipe, you'll need to include 
+                        a title, an image, ingredients, and directions. Users also have the ability to comment under 
+                        recipe posts as well. 
+                    </p>
+                </div>
+            </div>
+            <div class="button-div">
+                <a class="button" href="/signup">Sign up today</a>
+            </div>
+        </div>
+    </main>
+    <script src="/js/about.js"></script>
+    <script src="/js/animation.js"></script>
+</body>
+</html>

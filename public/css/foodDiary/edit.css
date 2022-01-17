@@ -44,6 +44,7 @@ form, button, .calories {
     margin: 0 auto; */
     justify-content: center;
     width: 100%;
+    align-items: center;
 }
 
 .diary-container {
@@ -72,7 +73,7 @@ form, button, .calories {
 }
 
 .diary-item {
-    max-width: 1200px;
+    max-width: 48%;
     min-width: 48%;
     text-align: center;
     box-sizing: border-box;
@@ -211,6 +212,14 @@ form, button, .calories {
     visibility: visible;
     transform: scale(1.1);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.search-image, .nutrients-tab {
+    overflow-y:hidden;
+}
+    
+img {
+    max-width: 90%;
 }
 
 /* .nutrients-tab {
@@ -359,10 +368,87 @@ form, button, .calories {
     cursor: pointer;
 } */
 
-
-@media (max-width: 1024px) {
+@media (max-width: 1224px) {
     .wrapper {
-        min-width: 1000px;
+        max-width: 960px;
+        min-width: 960px;
+    }
+}
+
+@media (max-width: 984px) {
+    .wrapper {
+        max-width: 760px;
+        min-width: 760px;
+    }
+
+    .modal-content-add {
+        width: 42rem;
+    }
+
+    .search-input {
+        width: auto;
+    }
+}
+
+@media (max-width: 784px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+        min-width: 654px;
+        max-width: 654px;
+        margin: auto;
+    }
+
+    .diary-item {
+        min-width: 100%;
+        max-width: 100%;
+        margin: 2rem 0;
+    }
+
+    .trigger {
+        margin-top: 0.75rem;
+    }
+
+    .modal-content-add {
+        width: 600px;
+        height: 540px;
+    }
+
+    .modal-container {
+        flex-direction: column-reverse;
+    }
+
+    .edit {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: max-content;
+        align-self: center;
+    }
+
+    .search-image img {
+        width: 350px;
+    }
+}
+
+@media (max-width: 678px) {
+    .wrapper {
+        min-width: 350px;
+        max-width: 350px;
+    }
+
+    .modal-content-add {
+        width: 350px;
+        height: 75%;
+    }
+}
+
+/* @media (max-width: 984px) {
+    .wrapper {
+        max-width: 760px;
+        min-width: 760px;
     }
 }
 
@@ -420,18 +506,10 @@ form, button, .calories {
     .diary-item p, form {
         margin: 0.125rem 0;
     }
-}
+} */
 
 /* .search-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 } */
-
-.search-image, .nutrients-tab {
-overflow-y:hidden;
-}
-
-img {
-    max-width: 90%;
-}

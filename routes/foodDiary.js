@@ -13,20 +13,20 @@ const arrayNames = ["Calories", "Total Carbohydrate", "Total Fiber", "Sugar", "F
 "Cholesterol", "Vitamin A", "Vitamin C", "Calcium", "Iron"];
 
 
-router.param("date", (req, res, next, value) => {
-    value = Date.parse(value);
-    if (value) {
-        const date = new Date(value);
-        // console.log(value, date);
-        value = date.getFullYear() + "-" + date.getDate() + "-" + date.getDay();
-        // req.params.date = value;
-        next();
-    }
-    else {
-        const msg = "Invalid Date"
-        throw new ExpressError(msg, 400);
-    }
-})
+// router.param("date", (req, res, next, value) => {
+//     value = Date.parse(value);
+//     if (value) {
+//         const date = new Date(value);
+//         // console.log(value, date);
+//         value = date.getFullYear() + "-" + date.getDate() + "-" + date.getDay();
+//         // req.params.date = value;
+//         next();
+//     }
+//     else {
+//         const msg = "Invalid Date"
+//         throw new ExpressError(msg, 400);
+//     }
+// })
 
 router.get("/food", (req, res) => {
     const { search } = req.query;
@@ -39,7 +39,7 @@ router.get("/food/:food", catchAsync(async (req, res, next) => {
     const { food } = req.params;
     const data = await foodApi(food);
     // if there is no data recieved, go to error template, else display the food data.
-    !data.foods[0] ? next() : res.render("foods/show", { data, arrayPosition }); 
+    !data.foods[0] ? next() : res.render("foods/show", { data, arrayPosition, arrayNames }); 
     // console.log(data);
     // console.log(food)
     // console.log(data.foods[0].foodNutrients[0]);
@@ -118,7 +118,7 @@ router.get("/diary", isLoggedIn, catchAsync(async (req, res) => {
     */
     // get new date
     let today = new Date();
-    today = today.getFullYear() + '-' + ('' + today.getMonth() + 1) + '-' + ('0' + today.getDate());
+    today = today.getFullYear() + '-' + ('' + today.getMonth() + 1) + '-' + ( today.getDate() < 9 ? '0' + today.getDate() : today.getDate());
     let date = new Date(`${today}T00:00`);
     const day = ('0' + date.getDate()).slice(-2);
     // const day = '0' + date.getDate();
@@ -126,6 +126,7 @@ router.get("/diary", isLoggedIn, catchAsync(async (req, res) => {
     // const month = '' + date.getMonth() + 1;
     const year = date.getFullYear();
     date = `${year}-${month}-${day}`;
+    console.log(`today: ${today}`);
     // console.log(date);
     // const foodDiary = await FoodDiary.findOne({ date, author: userId });
     // console.log(today);
