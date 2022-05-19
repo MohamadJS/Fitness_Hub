@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipes</title>
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/partials/header.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
@@ -18,7 +19,9 @@
     <main>
         <div class="container-main">
                 <h1 class="title">Recipes</h1>
-                <a href="/recipes/new">Post Recipe</a>
+                <% if(currentUser) { %> 
+                <a href="/recipes/new">Post a Recipe!</a>
+                <% } %> 
             <div class="post">
                     <% for (let recipe of recipes) {%>
                         <figure class="recipe">

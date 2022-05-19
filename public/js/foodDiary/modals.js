@@ -1,22 +1,13 @@
 const modal = document.querySelector(".modal");
-    const closeButton = document.querySelector(".close-button");
+const closeButton = document.querySelector(".close-button");
 
-    function toggleModal() {
-        modal.classList.toggle("show-modal");
+function toggleModal() {
+    modal.classList.toggle("show-modal");
+    if (modal.classList.contains("show-modal")) {
+        const main = document.querySelector("main");
+        main.classList.add("no-scroll");
     }
-
-    // function windowOnClick(event) {
-    //     if (event.target === modal) {
-    //         toggleModal();
-    //         modal.classList.remove("show-modal");
-    //         modal.classList.remove("modal");
-    //         modal.classList.add("hide");
-    //     }
-    // }
-
-// closeButton.addEventListener("click", toggleModal);
-// window.addEventListener("click", windowOnClick);
-
+}
 
 // Get name of food from h1.
 
@@ -30,13 +21,11 @@ const params = {
     api_key: "baxUmQv1cwFdluJZ6Y6v1BLwLU9ibtQUfiJLUeX3",
     fdcId: id.innerText,
     nutrients: [208, 203, 204, 205, 291, 269, 301, 303, 306, 307, 401, 320, 606, 645, 646, 601],
-    // label: ["cal", "prot", "fat", "carbs", "fiber", "sugar", "calcium", "iron", "magnesium", "potassium",
-    // "sodium", "vitmain c", "vitamin a", "saturated fat", "monounsaturated fat", "polyunsaturated fat", "cholesterol"]
 };
   
 let api_url = `https://api.nal.usda.gov/fdc/v1/foods/?api_key=${
     params.api_key
-  }&fdcIds=${params.fdcId}&nutrients=${params.nutrients}`; //&nutrients=${params.nutrients}
+  }&fdcIds=${params.fdcId}&nutrients=${params.nutrients}`;
   
 function getData() {
     return fetch(api_url)
@@ -69,12 +58,10 @@ const nutrientLabels = [
 ]
 
 const defaultOption = document.querySelector("#food-portion");
-console.log(defaultOption);
 
 async function displayOptions() {
     const placeholder = document.querySelector("option");
     const data = await getData();
-    console.log(data);
     const foodPortions = data[0].foodPortions.length - 1;
 
     placeholder.remove();
@@ -94,8 +81,6 @@ async function displayOptions() {
             }
         } else {
             // First Value in option
-            // option.value = 100;
-            // option.text = "100g";
             option.value = defaultOption.value;
             option.text = defaultOption.innerText;
             if (option.value == parseInt(data[0].foodPortions[i+1].gramWeight)) {
@@ -104,7 +89,6 @@ async function displayOptions() {
             }
 
         }
-        // servingSize.append(option);
         if (option.value)
             servingSize.append(option);
     }
@@ -117,13 +101,10 @@ const servingSize = document.querySelector("select");
 displayOptions();
 
 for (let i = 0; i < 16; i++) {
-    // previousNutrients[i] = Math.round(parseInt(nutrients[i].innerText) / parseInt(amountInput.value));
     previousNutrients[i] = Math.round(parseInt(nutrients[i].innerText));
 }
 
-// const servingSize = document.querySelector("select");
 const foodPortion = document.querySelector("#food-portion");
-// servingSize.value = parseInt(foodPortion.value);
 
 // Represents the previous Serving Size option
 let previousOption = 100
@@ -134,46 +115,34 @@ const foodAmt = document.querySelector("#serving-size");
 servingSize.addEventListener("change", e => {
     for (let i = 0; i < nutrients.length; i++) {
         nutrients[i].innerText = (Math.round((parseInt(e.target.value) / previousOption) * previousNutrients[i] * amountInput.value));
-        console.log(previousNutrients[i]);
-        console.log(e.target.value);
     }
 })
 
 // Update amount per serving. (Number of Servings)
 
-    amountInput.addEventListener("input", e => {
-        if (e.target.value < 0) e.target.value = 1;
-        console.log(e.target.value);
-    })
+amountInput.addEventListener("input", e => {
+    if (e.target.value < 0) e.target.value = 1;
+})
     
-    amountInput.addEventListener("change", e => {
-        if (e.target.value <= 0 || e.target.value === undefined) e.target.value = 1;
-        if (!e.target.value) e.target.value = 1;
-        // console.log(nutrients[0]);
+amountInput.addEventListener("change", e => {
+    if (e.target.value <= 0 || e.target.value === undefined) e.target.value = 1;
+    if (!e.target.value) e.target.value = 1;
         
-        // If the defaultOption is not 100g, and they change it back to 100g this is required.
-        if (servingSize.value == 100) {
-            for (let i = 0; i < nutrients.length; i++) 
-                nutrients[i].innerText = Math.round(1 * previousNutrients[i] * e.target.value);
+    // If the defaultOption is not 100g, and they change it back to 100g this is required.
+    if (servingSize.value == 100) {
+        for (let i = 0; i < nutrients.length; i++) 
+            nutrients[i].innerText = Math.round(1 * previousNutrients[i] * e.target.value);
+    }
+    else {
+        for (let i = 0; i < nutrients.length; i++) {
+            nutrients[i].innerText = (Math.round((parseInt(servingSize.value) / previousOption) * previousNutrients[i] * e.target.value));
         }
-        else {
-            for (let i = 0; i < nutrients.length; i++) {
-                nutrients[i].innerText = (Math.round((parseInt(servingSize.value) / previousOption) * previousNutrients[i] * e.target.value));
-            }
-        }
-        // console.log(e.target.value);
-        console.log(servingSize.value);
-    
-    })
+    } 
+})
 
-//TODO 
-/*
-update default nutrient values to the amount per serivng and serving size. and make it compatible with changing the values.
-*/
 
 for (nutrient of nutrients) {
     nutrient.innerText = Math.round(parseInt(nutrient.innerText) * parseInt(amountInput.value) * parseInt());
-    // nutrient.innerText = Math.round((parseInt(foodPortion.value) / previousOption) * previousNutrients[i] * amountInput.value));
 }
 
 for (let i = 0; i < nutrients.length; i++) {

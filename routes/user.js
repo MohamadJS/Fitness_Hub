@@ -3,6 +3,8 @@ const router = express.Router();
 const passport = require("passport");
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
+const ExpressError = require("../utils/ExpressError");
+const getDate = require("../utils/getDate");
 
 router.get("/signup", (req, res) => {
     !req.user ? res.render("users/signup") : res.redirect("/");
@@ -12,6 +14,16 @@ router.post("/signup", catchAsync(async (req, res, next) => {
     if (!req.user) {
         try {
             const { username, password } = req.body;
+            if (username.length <= 4) {
+                req.flash("error", "Username must be longer than 4 characters");
+                return res.redirect("/signup");
+            }
+
+            if (password.length <= 7) {
+                req.flash("error", "Password must be longer than 7 characters");
+                return res.redirect("/signup")
+            }
+
             const user = new User({ username });
             const registeredUser = await User.register(user, password)
             
@@ -34,9 +46,11 @@ router.get("/login", (req, res) => {
     !req.user ? res.render("users/login") : res.redirect("/");
 })
 
+
 router.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/login"}), (req, res) => {
     const currentUser = req.user;
-    const redirectUrl = req.session.returnTo || "/";
+    const date = getDate();
+    const redirectUrl = req.session.returnTo || `/diary/${date}`;
     req.flash("success", `Welcome back ${currentUser.username}!`);
     delete req.session.returnTo;
     res.redirect(redirectUrl);

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
     <title>Edit Recipe</title>
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/partials/header.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
@@ -17,26 +18,29 @@
     <%- include("../partials/flash") %> 
     <main>
         <div class="container-main">
-            <a class="link" href="/recipes/<%= recipe._id %>">Back</a>
             <div class="form-container">
+                <a class="link" href="/recipes/<%= recipe._id %>">Back</a>
                 <h1>Edit Recipe</h1>
-                <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST" class="validated-form" enctype="multipart/form-data">
                     <div class="form-item">
                         <label for="title">Recipe Name</label>
-                        <input id="title" type="text" name ="recipe[title]" placeholder="ex. Apple Pie" autocorrect="off" autocomplete="off" value="<%= recipe.title %>" required >
+                        <input id="title" type="text" name ="recipe[title]" placeholder="English Muffin Sandwich" autocorrect="off" autocomplete="off" value="<%= recipe.title %>" required >
+                        <div class="invalid-feedback">Recipe name is required.</div>
                     </div>
                     <div class="form-item">
                         <label for="img">Image</label>
-                        <!-- <input id="img" type="img" name="recipe[image]" placeholder="img.com/1235.png" autocomplete="off" value="<%= recipe.image %>" required > -->
                         <input type="file" name="image" id="img">
+                        <div class="invalid-feedback">An image is required.</div>
                     </div>
                     <div class="form-item">
-                        <label for="ingredients">Ingredients:</label>
-                        <textarea name="recipe[ingredients]" id="ingredients" cols="30" rows="10" required><%= recipe.ingredients %></textarea>
+                        <label for="ingredients">Ingredients</label>
+                        <textarea name="recipe[ingredients]" id="ingredients" cols="30" rows="10" placeholder="2 Eggs &#x0a;1 English Muffin&#x0a;1 Avocado&#x0a;1 Slice of Cheese" required><%= recipe.ingredients %></textarea>
+                        <div class="invalid-feedback">Ingredients are required.</div>
                     </div>
                     <div class="form-item">
-                        <label for="body">Directions:</label>
-                        <textarea name="recipe[body]" id="body" cols="75" rows="20" autocomplete="off" placeholder="Ingredients &#x0a;&#x0a;1. 1 large egg &#x0a;2. 14 tbs butter &#x0a;3."  onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" required><%= recipe.body %></textarea>
+                        <label for="body">Directions</label>
+                        <textarea name="recipe[body]" id="body" cols="75" rows="20" autocomplete="off" placeholder="1. Preheat oven to 350 degrees &#x0a;&#x0a;2. While the eggs are cooling, slice the English muffins in half. Toast them in a toaster oven.&#x0a;&#x0a;3. Build your sandwich by topping one slice of English muffin with 1 egg, 2 avocado wedges and 1 slice of cheese. Place top on English muffin."  onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" required><%= recipe.body %></textarea>
+                        <div class="invalid-feedback">Directions are required.</div>
                     </div>
                     <button>Update</button>
                     <a href="/recipes/<%= recipe._id %>">Cancel</a>
@@ -44,6 +48,7 @@
             </div>
         </div>
     </main>
+    <script src="/js/recipe.js"></script>
     <script src="/js/animation.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
+const ExpressError = require("../utils/ExpressError")
 const Recipe = require("../models/recipes");
 const comment = require("../models/comment");
 const { cloudinary, storage } = require("../cloudinary");
@@ -9,7 +10,6 @@ const multer = require("multer");
 const upload = multer({ storage });
 
 // Routes
-
 
 router.get("/recipes", catchAsync(async (req, res) => {
     const recipes = await Recipe.find({});
@@ -22,14 +22,18 @@ router.get("/recipes/new", isLoggedIn, (req, res) => {
 
 router.get("/recipes/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
-    const recipe = await Recipe.findById(id).populate({
-        path: "comments",
-        populate: {
-            path: "author"
-        }
-    }).populate("author");
-    const ingredients = recipe.ingredients.split("\n");
-    res.render("recipes/show", { recipe, ingredients });
+    try {
+        const recipe = await Recipe.findById(id).populate({
+            path: "comments",
+            populate: {
+                path: "author"
+            }
+        }).populate("author");
+        const ingredients = recipe.ingredients.split("\n");
+        res.render("recipes/show", { recipe, ingredients });
+    } catch (error) {
+        throw new ExpressError("Recipe not found", 404);
+    }
 }))
 
 router.post("/recipes/new", isLoggedIn, upload.single("image"), validateRecipe, catchAsync(async (req, res) => {
@@ -54,7 +58,6 @@ router.put("/recipes/:id", isLoggedIn, isAuthor, upload.single("image"), validat
     if (req.file) {
         await cloudinary.uploader.destroy(recipe.image.filename);
         const { path, filename } = req.file;
-        console.log(path);
         recipe.image = { url: path, filename };
     }
     await recipe.save();
@@ -65,7 +68,6 @@ router.put("/recipes/:id", isLoggedIn, isAuthor, upload.single("image"), validat
 router.delete("/recipes/:id", isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     const recipe = await Recipe.findByIdAndDelete(id);
-    console.log(recipe);
     await cloudinary.uploader.destroy(recipe.image.filename);
     req.flash("success", "Successfully deleted recipe!");
     res.redirect("/recipes");

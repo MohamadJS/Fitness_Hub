@@ -3,37 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Api</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
+    <title>Food Diary</title>
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/partials/header.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="../css/foodDiary/modals.css">
+    <link rel="stylesheet" href="../css/foodDiary/edit.css">
 </head>
 <body class="preload">
-  <%- include("../partials/header") %> 
-  <%- include("../partials/flash") %> 
+    <%- include("../partials/header") %> 
+    <%- include("../partials/flash") %> 
     <main>
-        <h2 class="page-subtitle">Search for nutritional</h2>
-        <h2 class="page-subtitle">information about certain foods.</h2>
-        <div class="search">
-          <form action="/food" id="searchForm">
-            <input
-              type="text"
-              name="search"
-              id="searchFood"
-              placeholder="ex. Apple"
-              autocomplete="off"
-            />
-          </form>
-        </div>
-        <% if(!search) { %> 
-            <p>Search for an item</p>
-        <% } %> 
-        <% if(!search) {} %> 
-      </main>
-    <script src="\js\foodId.js"></script>
+        <%- include("../partials/diary") %> 
+    </main>
+    <script src="/js/foodDiary/addFood.js"></script>
     <script src="/js/animation.js"></script>
 </body>
 </html>

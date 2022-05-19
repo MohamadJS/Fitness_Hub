@@ -1,6 +1,10 @@
 <% if(success && success.length) { %> 
-    <%= success %>
+    <div class="success-message">
+        <p class="success"><span class="success-symbol"><i class="material-icons">done</i></span> <%= success %> </p>
+    </div>
 <% } %> 
 <% if(error && error.length) { %> 
-    <%= error %> 
+    <div class="error-message">
+        <p class="error"><span class="error-symbol"><i class="material-icons">error_outline</i></span> <%= error %> </p> 
+    </div>
 <% } %> 

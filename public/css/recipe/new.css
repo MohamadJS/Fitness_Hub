@@ -39,3 +39,69 @@ textarea {
 .form-item label {
     margin-bottom: 0.5em;
 }
+
+input[type="text"], textarea {
+    padding: 0.5rem;
+    border: 1px solid lightgrey;
+    border-radius: 0.45rem;
+    outline: none;
+
+}
+
+label {
+    font-size: 1.1rem;
+}
+
+::-webkit-file-upload-button, button {
+    font-size: 0.9rem;
+    background-color: #2289ff;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.75rem ;
+    border-radius: 0.125rem;
+    transition: background-color 250ms;
+}
+
+::-webkit-file-upload-button:hover, button:hover {
+    background-color: #0270ee;
+    cursor: pointer;
+}
+
+input[type="text"]:hover, input[type="file"], textarea:hover {
+    border-color: grey;
+}
+
+input[type="text"]:focus, textarea:focus {
+    box-shadow: 0 0 0 1.5px #2289ff;
+    border-color: #2289ff;
+}
+
+.invalid-feedback {
+    display: none;
+    color: #eb3636;
+    margin: 0.25rem 0;
+}
+
+.invalid-feedback.active {
+    display: block;
+}
+
+.invalid {
+    border-color: #eb3636 !important;
+}
+
+.invalid:focus {
+    box-shadow: 0 0 0 1.5px #eb3636 !important;
+}
+
+@media (max-width: 550px) {
+    .form-container {
+        width: 450px;
+    }
+}
+
+@media (max-width: 450px) {
+    .form-container {
+        width: 350px;
+    }
+}

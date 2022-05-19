@@ -40,6 +40,10 @@ textarea {
     min-height: 0px;
 }
 
+.post a {
+    width: fit-content;
+}
+
 .recipe-title {
     font-size: 22px;
     font-weight: 600;
@@ -76,7 +80,8 @@ textarea {
 
 .post-ingredients, .post-directions {
     white-space: pre-wrap;
-    line-height: 1.25;
+    line-height: 1.5;
+    margin: 0.25rem;
 }
 
 .comments-div {
@@ -105,7 +110,6 @@ textarea {
 .comments-form textarea {
     max-width: 756px;
     width: 100%;
-    /* margin-bottom: 0.5rem; */
     padding: 0.5rem;
     box-sizing: border-box;
     border-color: #2289ff;
@@ -129,7 +133,6 @@ textarea {
 
 .comment-author {
     color: #2289ffbb;
-    /* margin-bottom: 0.5rem; */
 }
 
 .button {
@@ -143,53 +146,19 @@ textarea {
 }
 
 .button:hover {
-    color: #2289ff;
-    background-color: white;
+    background-color: #0270ee;
     cursor: pointer;
 }
 
 .button-delete {
-    font-size: 13px;
+    /* font-size: 13px; */
     color: white;
     background-color: #f22;
 }
 
 .button-delete:hover {
-    color: #f22;
-    background-color: white;
+    background-color: rgb(199, 33, 33);
 }
-
-/* .ingredients, .directions {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 756px;
-    box-sizing: border-box;
-    text-align: center;
-} */
-
-/* .post-main p, .post-main h2 {
-    margin-left: 18rem;
-    width: 100%;
-    max-width: 756px;
-    min-width: 300px;
-    font-weight: 350;
-    box-sizing: border-box;
-}
-
-.post-directions, .post-directions {
-    white-space: pre-wrap;
-    flex: 1 0 0;
-    text-align: center;
-}
-
-.directions {
-    width: 100%;
-    display:flex;
-    flex-direction: column;
-    box-sizing: border-box;
-} */
 
 @media (max-width:780px) {
     .post {

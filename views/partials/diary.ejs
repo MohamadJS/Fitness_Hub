@@ -14,10 +14,6 @@
                 </div>
             </div>
             <div class="edit">
-                <!-- <form action="/diary/<%= foodDiary.date %>" id="search-form">
-                    <input type="text" name="food" id="search" autocomplete="off">
-                    <button class="button-two">Search</button>
-                </form> -->
                     <form action="/diary/<%= foodDiary.date %>" class="search-box" id="search-form">
                       <input class="search-input" type="text" name="food" placeholder="Apple" id="search" autocomplete="off">
                       <button class="search-button" href="#">
@@ -25,12 +21,13 @@
                       </button>
                     </form>
                 <form action="/diary" method="POST" class="servings hidden">
-                    <input type="hidden" name="foodName" id="food-name" required>
-                    <input type="hidden" name="servingSize" id="serving-size" value="100g" required>
-                    <input type="hidden" name="fdcId" id="food-id" required>
-                    <input type="hidden" name="date" id="date" value="<%= foodDiary.date %>">
+                    <input type="hidden" name="foodDiary[foodName]" id="food-name" required>
+                    <input type="hidden" name="foodDiary[calories]" id="calories" required>
+                    <input type="hidden" name="foodDiary[servingSize]" id="serving-size" value="100g" required>
+                    <input type="hidden" name="foodDiary[fdcId]" id="food-id" required>
+                    <input type="hidden" name="foodDiary[date]" id="date" value="<%= foodDiary.date %>">
                     <div>
-                        <select name="meal" id="meal">
+                        <select name="foodDiary[meal]" id="meal">
                             <option value="breakfast">Breakfast</option>
                             <option value="lunch">Lunch</option>
                             <option value="dinner">Dinner</option>
@@ -38,10 +35,10 @@
                         </select>
                     </div>
                     <label for="food-portion">Serving Size</label>
-                    <select name="grams" id="food-portion"></select>
+                    <select name="foodDiary[grams]" id="food-portion"></select>
                     <div class="amount">
                         <label for="amount">Number of Servings</label>
-                        <input type="number" name="amount" id="amount" value="1" min="0" step=".01" required>
+                        <input type="number" name="foodDiary[amount]" id="amount" value="1" min="0" step=".01" required>
                     </div>
                     <button class="button-two">Add</button>
                 </form>
@@ -49,32 +46,26 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="date-div">
-        <button class="previous arrow">&#x2B05;</button>
-        <input type="date" name="date-selector" id="date-selector" value="<%= foodDiary.date %>">
-        <button class="next arrow">&#x2B95;</button>
-    </div>
     <div class="diary">
         <div class="diary-container">
-            <h1 class="diary-title">Food Diary - <span class="date"><%= foodDiary.date %></span></h1>
+            <h1 class="diary-title"><span class="date"><%= foodDiary.date %></span></h1>
+            <div class="container">
+                <div class="date-div">
+                    <button class="previous arrow "><span class="material-icons arrow-span">arrow_back</span></button>
+                    <input type="date" name="date-selector" id="date-selector" value="<%= foodDiary.date %>">
+                    <button class="next arrow"><span class="material-icons arrow-span ">arrow_forward</span></button>
+                </div>
             <div class="wrapper">
                 <div class="diary-item">
                     <h2>Breakfast</h2>
-                    <% //if(!foodDiary.food.breakfast[0]) { %> 
-                    <!-- Total calories, add totalCal to the foodDiarySchema, do logic inside the new route.-->
-                    <!-- Instead of putting if statement above, just put the foodDiary.food.breakfast.totalCal in h2 -->
-                    <!-- <h2>0 Cal</h2> -->
-                    <% //} %> 
                 <% for(food of foodDiary.food.breakfast) { %> 
                     <div class="flex">
                         <div class="food">
-                            <p class="food-name"><%= food.foodName %></p>
+                            <a href="/diary/<%= foodDiary.date%>/breakfast/<%= food._id %>" class="edit-button"><p class="food-name"><%= food.foodName %></p></a>
                             <p class="servings"><%= food.servingSize %> (<%= food.amount %> <%= food.amount > 1 ? "servings" : "serving" %>)</p>
                         </div>
                         <div class="food-options">
-                            <p class="calories">150</p>
-                            <form action="/diary/<%= foodDiary.date %>/breakfast/<%= food._id %>"><button class="btn fa fa-edit"></button></form>
+                            <p class="calories"><%= food.calories %> kcal</p>
                             <form action="/diary/<%= foodDiary.date %>/breakfast/<%= food._id %>?_method=DELETE" method="post" class="remove"><button class="btn fa fa-close"></button></form>
                         </div>
                     </div>
@@ -86,12 +77,11 @@
                 <% for(food of foodDiary.food.lunch) { %> 
                     <div class="flex">
                         <div class="food">
-                            <p class="food-name"><%= food.foodName %></p>
+                            <a href="/diary/<%= foodDiary.date%>/lunch/<%= food._id %>" class="edit-button"><p class="food-name"><%= food.foodName %></p></a>
                             <p class="servings"><%= food.servingSize %> (<%= food.amount %> <%= food.amount > 1 ? "servings" : "serving" %>)</p>
                         </div>
                         <div class="food-options">
-                            <p class="calories">150</p>
-                            <form action="/diary/<%= foodDiary.date %>/lunch/<%= food._id %>"><button class="btn fa fa-edit"></button></form>
+                            <p class="calories"><%= food.calories %> kcal</p>
                             <form action="/diary/<%= foodDiary.date %>/lunch/<%= food._id %>?_method=DELETE" method="post" class="remove"><button class="btn fa fa-close"></button></form>
                         </div>
                     </div>
@@ -105,12 +95,11 @@
                     <% for(food of foodDiary.food.dinner) { %> 
                         <div class="flex">
                             <div class="food">
-                                <p class="food-name"><%= food.foodName %></p>
+                                <a href="/diary/<%= foodDiary.date%>/dinner/<%= food._id %>" class="edit-button"><p class="food-name"><%= food.foodName %></p></a>
                                 <p class="servings"><%= food.servingSize %> (<%= food.amount %> <%= food.amount > 1 ? "servings" : "serving" %>)</p>
                             </div>
                             <div class="food-options">
-                                <p class="calories">150</p>
-                                <form action="/diary/<%= foodDiary.date %>/dinner/<%= food._id %>"><button class="btn fa fa-edit"></button></form>
+                                <p class="calories"><%= food.calories %>kcal</p>
                                 <form action="/diary/<%= foodDiary.date %>/dinner/<%= food._id %>?_method=DELETE" method="post" class="remove"><button class="btn fa fa-close"></button></form>
                             </div>
                         </div>
@@ -122,12 +111,11 @@
                     <% for(food of foodDiary.food.snack) { %> 
                         <div class="flex">
                             <div class="food">
-                                <p class="food-name"><%= food.foodName %></p>
+                                <a href="/diary/<%= foodDiary.date%>/snack/<%= food._id %>" class="edit-button"><p class="food-name"><%= food.foodName %></p></a>
                                 <p class="servings"><%= food.servingSize %> (<%= food.amount %> <%= food.amount > 1 ? "servings" : "serving" %>)</p>
                             </div>
                             <div class="food-options">
-                                <p class="calories">150</p>
-                                <form action="/diary/<%= foodDiary.date %>/snack/<%= food._id %>"><button class="btn fa fa-edit"></button></form>
+                                <p class="calories"><%= food.calories %>kcal</p>
                                 <form action="/diary/<%= foodDiary.date %>/snack/<%= food._id %>?_method=DELETE" method="post" class="remove"><button class="btn fa fa-close"></button></form>
                             </div>
                         </div>

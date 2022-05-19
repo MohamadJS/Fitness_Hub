@@ -1,27 +1,59 @@
-<% layout("layouts/users")%>
-    <h1>Log in</h1>
-    <form action="/login" method="POST" class="validated-form" novalidate>
-      <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input
-          class="form-control"
-          type="text"
-          name="username"
-          id="username"
-          required
-        />
-        <div class="valid-feedback">Looks Good!</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
+  <title>Login</title>
+  <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+  <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/partials/header.css">
+  <link rel="stylesheet" href="/css/users.css">
+</head>
+<body>
+  <%- include("../partials/header") %> 
+  <div class="main-container">
+    <div class="panel">
+      <h1 class="page-title">Login</h1>
+      <%- include("../partials/flash") %> 
+      <div class="form-container">
+        <form action="/login" method="POST" class="validated-form" novalidate>
+          <div class="input-div">
+            <label class="form-label" for="username">Username</label>
+            <input
+              class="form"
+              type="text"
+              name="username"
+              id="username"
+              spellcheck="false"
+              required
+            />
+            <div class="invalid-feedback">Username is required.</div>
+          </div>
+          <div class="input-div">
+            <label class="form-label" for="password">Password</label>
+            <input
+              class="form"
+              type="password"
+              name="password"
+              id="password"
+              required
+            />
+            <div class="invalid-feedback">Password is required.</div>
+          </div>
+          <button class="btn">Log in</button>
+        </form>
       </div>
-      <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input
-          class="form-control"
-          type="password"
-          name="password"
-          id="password"
-          required
-        />
-        <div class="valid-feedback">Looks Good!</div>
-      </div>
-      <button class="btn btn-primary">Log in</button>
-    </form>
+    </div>
+    <div class="panel-footer">
+      <p>Don't have an account?</p>
+      <a href="/signup">Sign up</a>
+    </div>
+  </div>
+  <script src="/js/users.js"></script>
+</body>
+</html>

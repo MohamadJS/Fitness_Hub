@@ -1,24 +1,3 @@
-// https://rapidapi.com/msilverman/api/nutritionix-nutrition-database/
-// app ID: 2839acf8
-// App keys: 082178427b2ab7068557ee9560a980e4
-
-// axios.request(options).then(function (response) {
-// 	console.log(response.data);
-// }).catch(function (error) {
-// 	console.error(error);
-// });
-
-// const nutrition = async (e) => {
-// 	try {
-// 		const config = { params: {fields: 'item_name,item_id,brand_name,nf_calories,nf_total_fat'}, headers: {'x-rapidapi-host': 'nutritionix-api.p.rapidapi.com', "x-app-id": "2839acf8", "x-app-key": "082178427b2ab7068557ee9560a980e4" } }
-// 		const data = await axios.get("https://nutritionix-api.p.rapidapi.com/v2/search/", config);
-// 		console.log(data);
-// 	}
-// 	catch (e) {
-// 		console.log(e);
-// 	}
-// }
-
 const input = document.querySelector("#searchForm");
 const searchDiv = document.querySelector(".search");
 
@@ -26,7 +5,6 @@ const searchDiv = document.querySelector(".search");
 input.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!input.searchFood.value) {
-	  console.log("Sorry, nothing found");
 	  reset();
   } else {
     api_url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(
@@ -38,7 +16,6 @@ input.addEventListener("submit", async (e) => {
     )}&pageSize=${encodeURIComponent(params.pagesize)}`;
     reset();
     await displayRes(getData, input.searchFood.value.trim());
-    // await getNutrition(getData);
     input.searchFood.value = "";
   }
 });
@@ -64,19 +41,6 @@ function getData() {
       console.log(e);
     });
 }
-
-// getData().then(data => {
-// 	// console.log(data.foods[0].foodNutrients)
-// 	for (let i = 0; i < 3; i++) {
-// 		console.log(data.foods[0].foodNutrients[i])
-// 	}
-// })
-
-// async function getNutrition(data) {
-//   const nutritionInfo = await data();
-//   displayRes(nutritionInfo);
-// }
-// getNutrition(getData)
 
 // Displays Nutritional information on the screen
 async function displayRes(data, name) {
@@ -133,22 +97,9 @@ async function displayRes(data, name) {
     // Carbs
     appendRes(label.carbs, directory.carbs, nutritionInfo.foods[0].foodNutrients, "g", nutritionContainer);
 
-    // Fats
-    // appendRes(label.fats, directory.fats, nutritionInfo.foods[0].foodNutrients, "g", nutritionContainer);
-
-    // // Protein
-    // appendRes(label.protein, directory.protein, nutritionInfo.foods[0].foodNutrients, "g", nutritionContainer);
-
     // Nutrients
     appendRes(label.nutrients, directory.nutrients, nutritionInfo.foods[0].foodNutrients, "mg", nutritionContainer);
   }
-  // Vitamins
-  // appendRes(label.vitamins, directory.vitamins, nutritionInfo.foods[0].foodNutrients, "mg", nutritionContainer);
-  // for (let i = 0; i < label.vitamins.length; i++) {
-  //   const p = document.createElement("p");
-  //   p.append(`${label.vitamins[i]}: ${Math.ceil(nutritionInfo.foods[0].foodNutrients[directory.vitamins[i]].value)}`)
-  //   resDiv.append(p);
-  // }
 
 }
 
@@ -173,16 +124,3 @@ function reset() {
     foodInfo[i].remove();
   }
 }
-
-// const options = {
-// 	method: 'GET',
-// 	url: 'https://nutritionix-api.p.rapidapi.com/v1_1/search/cheddar%20cheese',
-// 	params: {fields: 'item_name,item_id,brand_name,nf_calories,nf_total_fat'},
-// 	headers: {'x-rapidapi-host': 'nutritionix-api.p.rapidapi.com'}
-//   };
-
-//   axios.request(options).then(function (response) {
-// 	  console.log(response.data);
-//   }).catch(function (error) {
-// 	  console.error(error);
-//   });

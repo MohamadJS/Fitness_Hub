@@ -1,29 +1,28 @@
-<header>
-    <div class="panel">
-      <div class="panel-header">
-        <h1><a href="/">Fitness Hub</a></h1>
-        <div class="panel-option">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <header>
+    <nav class="navbar">
+      <div class="brand-title"><a href="/">Fitness Hub</a></div>
+      <a class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div class="navbar-links">
+        <ul>
           <% if(!currentUser) { %> 
-          <a href="/signup" class="signup">SignUp</a>
-          <a href="/login">Login</a>
-          <% } else { %> 
-            <a href="/diary">Food Log</a>
-            <a href="/logout">Logout</a>
+            <li><a href="/about">About</a></li>
           <% } %> 
-        </div>
-      </div>
-    </div>
-    <nav>
-      <div class="panel">
-        <div class="nav-option">
-          <a href="/about">About</a>
-        </div>
-        <div class="nav-option">
-          <a href="/food">Foods</a>
-        </div>
-        <div class="nav-option">
-          <a href="/recipes">Recipes</a>
-        </div>
+          <li><a href="/food">Foods</a></li>
+          <li><a href="/recipes">Recipes</a></li>
+          <% if(!currentUser) { %> 
+            <li><a href="/login">Login</a></li>
+          <% }  else { %> 
+            <li><a href="/diary">Food Diary</a></li>
+            <li><a href="/logout">Logout</a></li>
+          <% } %> 
+        </ul>
       </div>
     </nav>
   </header>
+
+  <script src="/js/header.js"></script>

@@ -1,12 +1,12 @@
-// Set the calender to current date.
-const calender = document.getElementById('date-picker');
-const date = new Date();
+const selectServingSize = document.querySelector("#selectServingSize");
+const defaultOption = document.querySelector("#serving-size").value;
 
-if (calender) {
-    calender.value = date.getFullYear().toString() + '-' +
-    (date.getMonth() + 1).toString().padStart(2, 0) + '-' + date.getDate().toString().padStart(2, 0);
+console.log(selectServingSize);
+
+for (let servings of selectServingSize.options) {
+    if (servings.textContent == defaultOption)
+        selectServingSize.selectedIndex = servings.index;
 }
-
 
 const id = document.querySelector("#food-id");
 
@@ -18,7 +18,7 @@ const params = {
   
 let api_url = `https://api.nal.usda.gov/fdc/v1/foods/?api_key=${
     params.api_key
-  }&fdcIds=${params.fdcId}&nutrients=${params.nutrients}`; //&nutrients=${params.nutrients}
+  }&fdcIds=${params.fdcId}&nutrients=${params.nutrients}`;
   
 function getData() {
     return fetch(api_url)
@@ -50,36 +50,15 @@ const nutrientLabels = [
     { label: "Iron", value: 303, sub: 7 }
 ]
 let data = "";
-async function displayOptions() {
-    const placeholder = document.querySelector("option");
-    data = await getData();
-    const foodPortions = data[0].foodPortions.length - 1;
+// const selectServingSize = document.querySelector("#selectServingSize");
 
-    placeholder.remove();
 
-    for (let i = -1; i < foodPortions; i++) {
-        const option = document.createElement("option")
-        if (i !== -1) {
-            option.value = data[0].foodPortions[i].gramWeight;
-            option.text = data[0].foodPortions[i].portionDescription;
-        } else {
-            option.value = 100;
-            option.text = "100g";
-        }
-        servingSize.append(option);
-    }
-
-    for (let i = 0; i < 16; i++) {
-        previousNutrients[i] = data[0].foodNutrients[nutrientLabels[i].sub].amount;
-    }
-}
-
-const nutrients = document.querySelectorAll(".nutrients");
 const servingSize = document.querySelector("select");
 
 // Represents the previous Serving Size option
 let previousOption = 100;
 
+const nutrients = document.querySelectorAll(".nutrients");
 const foodAmt = document.querySelector("#serving-size");
 
 const initialNutrients = [];
@@ -97,18 +76,26 @@ servingSize.addEventListener("change", e => {
 const amountInput = document.querySelector("#amount");
 
 amountInput.addEventListener("input", e => {
+    console.log(nutrients[0]);
     if(e.target.value > 1000) {
         e.target.value = 1000;
         return;
-    } 
+    }
+    if (e.target.value < 0) {
+        e.target.value = 1;
+    }
     updateInformation();
 
 })
 
 const calories = document.querySelector("#calories");
 
-function updateInformation(e) {
+function updateInformation() {
     for (let i = 0; i < nutrients.length; i++)
         nutrients[i].innerText = Math.round((servingSize.value / 100) * initialNutrients[i] * amountInput.value);
     calories.value = nutrients[0].innerText;
 }
+
+for (let i = 0; i < nutrients.length; i++)
+        nutrients[i].innerText = Math.round((servingSize.value / 100) * initialNutrients[i] * amountInput.value);
+    calories.value = nutrients[0].innerText;

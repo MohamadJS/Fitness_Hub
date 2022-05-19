@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
     <title><%= recipe.title %></title>
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/partials/header.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
@@ -17,8 +18,8 @@
     <%- include("../partials/flash") %> 
     <main>
         <div class="container-main">
-            <a class="link" href="/recipes">Back</a>
             <div class="post">
+                <a class="link" href="/recipes">Back</a>
                 <h1 class="post-title"><%= recipe.title %></h1>
                 <img class="post-image" src="<%= recipe.image.url %>" alt="">
                 <div class="post-main">
@@ -40,7 +41,7 @@
                 <% } %> 
             </div>
             <div class="comments-div">
-                <h2 class="comments-title">Comments</h2>
+                <h2 class="comments-title">Comments (<%= recipe.comments.length %>)</h2>
                 <% if(currentUser) {%> 
                 <form class="comments-form" action="/recipes/<%= recipe._id %>/comments" method="POST">
                     <textarea name="comment[body]" id="comment" cols="90" rows="3" placeholder="Leave a Comment..." required></textarea>

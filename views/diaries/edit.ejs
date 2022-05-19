@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
     <title>Food Diary</title>
-    <link rel="stylesheet" href="../css/partials/header.css">
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/partials/header.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
       rel="stylesheet"
@@ -13,16 +14,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <link rel="stylesheet" href="../css/foodDiary/modals.css">
-    <link rel="stylesheet" href="../css/foodDiary/edit.css">
+    <link rel="stylesheet" href="/css/food.css">
 </head>
 <body class="preload">
     <%- include("../partials/header") %> 
     <%- include("../partials/flash") %> 
-    <main>
-        <%- include("../partials/diary") %> 
-    </main>
-    <script src="/js/foodDiary/addFood.js"></script>
-    <script src="/js/animation.js"></script>
+        <main>
+            <div class="wrapper">
+              <div class="title-container">
+                <h1 class="title"><%= data.foods[0].description %></h1>
+                <h2 class="category"><%= data.foods[0].foodCategory %></h2>
+              </div>
+          <form action="/diary/<%= foodDiary.date %>/<%= meal %>/<%= id %>?_method=PUT" method="POST">
+            <input type="hidden" name="foodDiary[fdCiD]" id="food-id" value="<%= data.foods[0].fdcId %>">
+            <input type="hidden" name="foodDiary[calories]" id="calories" value="<%= selectedFood.calories %>" required>
+            <input type="hidden" name="foodDiary[servingSize]" id="serving-size" value="<%= selectedFood.servingSize %>" required>
+            <div class="ss-container">
+              <label for="food-portion">Serving Size </label>
+              <select name="foodDiary[grams]" id="selectServingSize">
+                <option value="100">100g</option>
+                  <% for(let i = 0; i < data.foods[0].foodMeasures.length - 1; i++) { %> 
+                    <option value="<%= data.foods[0].foodMeasures[i].gramWeight %>"><%= data.foods[0].foodMeasures[i].disseminationText %></option>
+                  <% } %>  
+              </select>
+            </div>
+            <div class="amount">
+              <label for="amount">Number of Servings </label>
+              <input type="number" name="foodDiary[amount]" id="amount" value="<%= selectedFood.amount %>" min="0" max="1000" step="0.1" required>
+            </div>
+            <div class="center">
+              <button>Update</button>
+              <a href="/diary/<%= foodDiary.date %>">Cancel</a>
+            </div>
+            </form>
+              <div class="container">
+                <div class="nutrient-container">
+                  <% for (let i = 0; i < 9; i++) { %> 
+                    <p class="item">
+                      <%= arrayNames[i] %> 
+                      <span><span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value)%></span> <span><%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></span></p>
+                  <% } %> 
+                </div>
+                <div class="nutrient-container">
+                  <% for (let i = 9; i < 16; i++) { %> 
+                    <p class="item">
+                      <%= arrayNames[i] %> 
+                      <span><span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value)%></span> <span><%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></span></p>
+                  <% } %> 
+                </div>
+              </div>
+            </div>
+        </main>
+          <script src="/js/foodDiary/edit.js"></script>
+        <script src="/js/animation.js"></script>
 </body>
 </html>

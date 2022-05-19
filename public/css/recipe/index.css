@@ -14,63 +14,38 @@
     text-align: center;
 }
 
+.container-main a {
+    margin: 0.5rem 0;
+}
+
 .post {
     width: 100%;
     max-width: 1200px;
-    /* min-width: 100%; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* flex-shrink: 5; */
     justify-content: space-between;
-    /* margin: 1.5rem 0; */
-    /* flex-basis: 100px; */
 }
 
-
-/* .textover {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-} */
-
 .recipe {
-    /* margin-bottom: 2rem; */
     height: 350px;
     max-width: 350px;
-    /* margin: 1.5rem 5rem; */
     margin: 1.5rem 0 ;
     align-self: center;
     text-align: center;
-    /* word-wrap: break-word; */
     box-sizing: border-box;
     box-shadow: 0.5em 0.125em 1.5em 0.1em #0000006e;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), transparent);
-    /* border-radius: 1rem; */
 }
-
-
-
-/* .textover:hover h2 {
-    color: #2289ff;
-} */
-
-/* .textover:nth-of-type(4) {
-    align-self: flex-start;
-} */
 
 .recipe img {
     width: 350px;
     height: 230px;
     object-fit: cover;
-    /* border-radius: 1rem; */
 }
 
 .recipe-title-div {
     max-width: 100%;
-    /* overflow: hidden;
-    white-space: nowrap; */
-    /* text-overflow: ellipsis; */
 }
 
 .recipe-title {
@@ -85,7 +60,6 @@
     padding: 0.3rem 0;
     border-bottom: 1px solid lightgrey;
     text-overflow: ellipsis;
-    /* border-radius: 0.125rem; */
 }
 
 .link {
@@ -108,60 +82,6 @@
     height: 350px;
     width: 350px;
 }
-
-/* .textover img { 
-    width: 100%; 
-    max-width: 500px;
-    max-height: 500px;
-    min-height: 50%;
-    min-width: 50%;
-}
-
-.textover { 
-    max-width: 600px;
-    box-sizing: border-box;
-    margin-bottom: 1.5rem;
-} */
-/* 
-.textover { 
-    box-sizing: border-box;
-    position: relative; 
-}  */
-
-/* .textover figcaption {
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-} */
-
-/* .textover figcaption {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    color: white;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.6);
-  } */
-
-/* .post {
-    display: flex;
-    flex-direction: column;
-}
-
-.post-container {
-    position: relative;
-}
-
-.post-container a {
-    font-size: 25px;
-    color: red;
-    position: absolute;
-    top: 90%;
-    left: 25%;
-    width: 100%;
-    background-color: lightgrey;
-} */
 
 @media (max-width: 1220px) {
     .post {

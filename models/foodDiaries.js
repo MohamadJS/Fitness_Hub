@@ -7,6 +7,7 @@ const FoodDiarySchema = new Schema({
     food: {
         breakfast: [{
             foodName: String,
+            calories: String,
             servingSize: String,
             grams: String,
             fdcId: String,
@@ -14,6 +15,7 @@ const FoodDiarySchema = new Schema({
         }],
         lunch: [{
             foodName: String,
+            calories: String,
             servingSize: String,
             grams: String,
             fdcId: String,
@@ -21,6 +23,7 @@ const FoodDiarySchema = new Schema({
         }],
         dinner: [{
             foodName: String,
+            calories: String,
             servingSize: String,
             grams: String,
             fdcId: String,
@@ -28,6 +31,7 @@ const FoodDiarySchema = new Schema({
         }],
         snack: [{
             foodName: String,
+            calories: String,
             servingSize: String,
             grams: String,
             fdcId: String,
@@ -41,14 +45,3 @@ const FoodDiarySchema = new Schema({
 })
 
 module.exports = mongoose.model("FoodDiary", FoodDiarySchema);
-
-// In the request we are gonna find foodDiary by the date, and the author, if not found we create a new 
-// food diary for that specified date.
-
-
-// In our routes to log our food, 
-// we will do foodDiary.date = req.body.date,
-// foodDiary.food[req.body.meal].push({ req.body.foodName, req.body.servingSize, req.body.grams, req.body.fdcId })
-// await foodDiary.save();
-
-// We will add in user and put the user id in the foodDiary so we can search for the date and the author, 

@@ -59,11 +59,6 @@ form {
     justify-content: space-between;
 }
 
-/* input[type=text] {
-    padding: 0.25rem;
-    width: 40%;
-} */
-
 .button {
     padding: 0.35rem 0.75rem;
     color: white;
@@ -78,31 +73,14 @@ form {
     background-color: #1c7be7;
 }
 
-/* .search-form {
-    width: 75%;
-    margin: 0 auto;
-} */
-
 .search-box {
-    /* background: #2f3640; */
     background: white;
     height: 2.5rem;
     border-radius: 2.5rem;
     padding: 10px;
     box-shadow: 0em 0em 1.5em 0.1em #0000006e;
     margin-top: 3rem;
-    /* width: 50%; */
 }
-
-/* .searchBox:hover > .searchInput {
-    width: 240px;
-    padding: 0 6px;
-} */
-
-/* .searchBox:hover > .searchButton {
-  background: white;
-  color : #2f3640;
-} */
 
 .search-button {
     color: #2289ff;

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Api</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
+    <title>Foods</title>
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/partials/header.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
@@ -32,28 +33,22 @@
                     </button>
                   </form>
                 </div>
-                <!-- <form action="/food" id="searchForm">
-                  <input
-                    type="text"
-                    name="search"
-                    id="searchFood"
-                    placeholder="ex. Apple"
-                    autocomplete="off"
-                    />
-                    <button class="button">Search</button>
-                </form> -->
               </div>
               <% if(!search) { %> 
                 <div class="search-empty">
                   <p>Search for food!</p>
                   <img src="../icons/Search engines.gif" alt="Search">
                 </div>
-              <% } %> 
+              <% } else { %>
+                <div class="search-empty">
+                  <p>Displaying results for <%= search %> </p>
+                </div>
+              <% } %>  
             </div>
           </div>
       </div>
       </main>
-    <script src="\js\foodId.js"></script>
+    <script src="/js/foodId.js"></script>
     <script src="/js/animation.js"></script>
 </body>
 </html>

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
     <title>New Recipe</title>
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/partials/header.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
@@ -17,32 +18,36 @@
     <%- include("../partials/flash") %> 
     <main>
         <div class="container-main">
-            <a class="link" href="/recipes">Back</a>
             <div class="form-container">
+                <a class="link" href="/recipes">Back</a>
                 <h1>Share a Recipe!</h1>
-                <form action="/recipes/new" method="POST" enctype="multipart/form-data">
+                <form action="/recipes/new" method="POST" class="validated-form" enctype="multipart/form-data" novalidate>
                     <div class="form-item">
-                        <label for="title">Recipe Name:</label>
-                        <input id="title" type="text" name ="recipe[title]" placeholder="ex. Egg Sandwich" autocorrect="off" autocomplete="off" required >
+                        <label for="title">Recipe Name</label>
+                        <input id="title" type="text" name ="recipe[title]" autocorrect="off" autocomplete="off" placeholder="English Muffin Sandwich" required >
+                        <div class="invalid-feedback">Recipe name is required.</div>
                     </div>
                     <div class="form-item">
-                        <label for="img">Image:</label>
-                        <!-- <input id="img" type="img" name="recipe[image]" placeholder="img.com/1235.png" autocomplete="off" required > -->
-                        <input type="file" name="image" id="img" required>
+                        <label for="img">Image</label>
+                        <input type="file" name="image" id="img" accept="image/*" required>
+                        <div class="invalid-feedback">An image is required.</div>
                     </div>
                     <div class="form-item">
-                        <label for="ingredients">Ingredients:</label>
-                        <textarea name="recipe[ingredients]" id="ingredients" cols="30" rows="10" placeholder="4 LargeEggs&#x0a;4 English Muffins&#x0a;Medium Avocado, sliced into 8 wedges&#x0a;4 Slices cheddar cheese" required></textarea>
+                        <label for="ingredients">Ingredients</label>
+                        <textarea name="recipe[ingredients]" id="ingredients" cols="30" rows="10" placeholder="2 Eggs &#x0a;1 English Muffin&#x0a;1 Avocado&#x0a;1 Slice of Cheese" required></textarea>
+                        <div class="invalid-feedback">Ingredients are required.</div>
                     </div>
                     <div class="form-item">
-                        <label for="body">Directions:</label>
-                        <textarea id="body" name="recipe[body]" cols="75" rows="20" autocomplete="off" placeholder="1. Preheat oven to 350 degrees F, and use cooking oil to lightly grease 4 wells in a muffin tin. Crack 1 egg into each muffin cup. Bake the eggs for 15-20 minutes. &#x0a;&#x0a;2. While the eggs are cooling, slice the English muffins in half. Toast them in a toaster oven. If you don’t have a toaster oven, toast muffins in a non-stick pan over medium heat until both sides are crispy. Set muffins aside.&#x0a;&#x0a;3. Build your sandwich by topping one slice of English muffin with 1 egg, 2 avocado wedges and 1 slice of cheese. Place top on English muffin. If you prefer, you can warm the sandwich in the microwave for 20 seconds to melt the cheese." onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" required></textarea>
+                        <label for="body">Directions</label>
+                        <textarea id="body" name="recipe[body]" cols="75" rows="20" autocomplete="off" placeholder="1. Preheat oven to 350 degrees &#x0a;&#x0a;2. While the eggs are cooling, slice the English muffins in half. Toast them in a toaster oven.&#x0a;&#x0a;3. Build your sandwich by topping one slice of English muffin with 1 egg, 2 avocado wedges and 1 slice of cheese. Place top on English muffin." onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" required></textarea>
+                        <div class="invalid-feedback">Directions are required.</div>
                     </div>
                     <button>Post</button>
                 </form>
             </div>
         </div>
     </main>
+    <script src="/js/recipe.js"></script>
     <script src="/js/animation.js"></script>
 </body>
 </html>

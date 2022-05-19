@@ -8,7 +8,6 @@ const { isLoggedIn, validateComment, isCommentAuthor } = require("../middleware"
 // Routes
 router.post("/:id/comments", isLoggedIn, validateComment, catchAsync(async (req, res) => {
     const recipe = await Recipe.findById(req.params.id);
-    console.log(recipe);
     const comment = new Comment(req.body.comment);
     comment.author = req.user._id;
     recipe.comments.push(comment);

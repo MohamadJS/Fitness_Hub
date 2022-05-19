@@ -113,25 +113,6 @@ img {
 
 }
 
-nav {
-    background-color: #0076fd;
-    height: 3em;
-}
-
-.nav-option {
-    margin: 0 3rem;
-}
-
-.nav-option a {
-    font-size: 1.25em;
-    padding: .75rem .75rem;
-    color: white;
-}
-
-.nav-option a:hover {
-    color: rgba(251, 133, 0, 75%);
-}
-
 .container-top {
     display: flex;
     justify-content: center;
@@ -157,7 +138,6 @@ nav {
 }
 
 .motto-text {
-    /* margin: 0 5em; */
     width: 100%;
     max-width: 1200px;
     min-width: 300px;
@@ -170,7 +150,6 @@ nav {
 }
 
 .motto-descrip, .panel-advantage p {
-    /* margin-left: 18rem; */
     width: 100%;
     max-width: 1200px;
     min-width: 300px;
@@ -181,7 +160,6 @@ nav {
 }
 
 .motto-button {
-    /* margin-left: 18rem; */
     width: 100%;
     max-width: 1200px;
     margin: 0.75em 0;
@@ -242,23 +220,6 @@ nav {
     flex-direction: row-reverse;
 }
 
-
-/* .container-benefits {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 10vh;
-} */
-
-/* .panel-advantage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    width: auto;
-} */
-
 .benefits-title {
     color: #272838;
     text-align: center;
@@ -279,7 +240,6 @@ nav {
     margin: 2.5vh auto;
     border-radius: 10px;
     box-sizing: border-box;
-    /* box-shadow: 0 0.5em 2em 0.1em #0000006e; */
 }
 
 
@@ -312,8 +272,6 @@ nav {
 .panel-advantage p {
     font-size: 1.125rem;
     font-weight: 400;
-    /* width: 30%; */
-    /* margin: 0 auto; */
     text-align: center;
 }
 
@@ -344,15 +302,12 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin-bottom: -9vw; */
 }
 
 .search-content, .recipe-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
-    /* height: 90%; */
     margin-top: 5rem;
 }
 
@@ -363,36 +318,21 @@ nav {
     font-size: 2.5rem;
     word-wrap: normal;
     margin-bottom: 5rem;
-    /* text-shadow: 0.125rem 0.125rem 0.125rem rgba(0, 0, 0, 0.25); */
 }
 
 .search-box {
-    /* background: #2f3640; */
     background: white;
     height: 40px;
     border-radius: 40px;
     padding: 10px;
     box-shadow: 0em 0em 1.5em 0.1em #0000006e;
-    /* margin-top: 3rem; */
-    /* width: 50%; */
 }
-
-/* .searchBox:hover > .searchInput {
-    width: 240px;
-    padding: 0 6px;
-} */
-
-/* .searchBox:hover > .searchButton {
-  background: white;
-  color : #2f3640;
-} */
 
 .search-button {
     color: white;
     float: right;
     width: 2.5rem;
     height: 2.5rem;
-    /* border-radius: 50%; */
     background: #2f3640;
     display: flex;
     justify-content: center;
@@ -412,7 +352,6 @@ nav {
     color: black;
     font-size: 1rem;
     line-height: 2.5rem;
-    /* width: 85%; */
     width: 250px;
     padding: 0 0.5rem;
 }
@@ -444,7 +383,6 @@ nav {
     padding-top: 1.5rem;
     margin: 0 0.5rem;
     line-height: 1.125rem;
-    /* text-shadow: 0.125rem 0.125rem 0.125rem rgba(0, 0, 0, 0.25); */
 }
 
 .benefits-div {
@@ -459,53 +397,31 @@ nav {
     width: 100%;
     max-width: 1200px;
     margin-top: 3rem;
-    /* min-width: 100%; */
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    /* flex-shrink: 5; */
     justify-content: center;
-    /* margin: 1.5rem 0; */
-    /* flex-basis: 100px; */
 }
 
 .recipe {
-    /* margin-bottom: 2rem; */
     height: 350px;
     max-width: 350px;
     margin: 1rem 1rem;
-    /* margin: 1.5rem 5rem; */
     align-self: center;
     text-align: center;
-    /* word-wrap: break-word; */
     box-sizing: border-box;
     box-shadow: 0.5em 0.125em 1.5em 0.1em #0000006e;
     background: linear-gradient(to bottom, rgb(168, 168, 168), white);
-    /* border-radius: 1rem; */
 }
-
-
-
-/* .textover:hover h2 {
-    color: #2289ff;
-} */
-
-/* .textover:nth-of-type(4) {
-    align-self: flex-start;
-} */
 
 .recipe img {
     width: 350px;
     height: 230px;
     object-fit: cover;
-    /* border-radius: 1rem; */
 }
 
 .recipe-title-div-2 {
     max-width: 100%;
-    /* overflow: hidden;
-    white-space: nowrap; */
-    /* text-overflow: ellipsis; */
 }
 
 .recipe-title {
@@ -520,7 +436,6 @@ nav {
     padding: 0.3rem 0;
     border-bottom: 1px solid lightgrey;
     text-overflow: ellipsis;
-    /* border-radius: 0.125rem; */
 }
 
 .link {

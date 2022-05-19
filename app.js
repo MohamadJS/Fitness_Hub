@@ -74,21 +74,12 @@ app.use((req, res, next) => {
 });
 
 app.get("/", catchAsync(async (req, res) => {
-    // Send style sheet location and title of page to boilerplate.
-    const style = "\\css\\app.css";
-    const title = "Fitness Hub";
     const recipes = await Recipe.find({});
-    res.render("index", { recipes, style, title });
+    req.user ? res.redirect("/diary") : res.render("index", { recipes });
 }))
 
 app.get("/about", (req, res) => {
-    res.render("about");
-})
-
-
-// remove this later
-app.get("/nutrition", (req, res) => {
-    res.render("nutrition");
+    req.user ? res.redirect("/") : res.render("about");
 })
 
 app.use("/", userRoutes);
@@ -102,8 +93,9 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
+    message = err.message
     if (!err.message) err.message = "Something went wrong";
-    res.status(statusCode).render("error", { err });
+    res.status(statusCode).render("error", { message, err });
 })
 
 app.listen(3000, () => {

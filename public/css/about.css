@@ -13,7 +13,6 @@
     display: flex;
     flex-direction: column;
     max-width: 764px;
-    /* border-bottom: 1px solid lightgrey; */
 }
 
 .page-title {
@@ -41,13 +40,11 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-width: 960px;
-    max-width: 960px;
+    max-width: 540px;
     margin: 1rem 0;
 }
 
 .faq-title {
-    /* color: #2289ff; */
     font-size: 2rem;
     font-weight: 600;
     margin: 1rem;
@@ -61,49 +58,38 @@
     background-color: #2289ff;
     padding: 0.3rem;
     border-radius: 0.25rem;
+    box-sizing: border-box;
 }
 
 .faq-subtitle h3 {
     font-size: 20px;
     font-weight: 600;
+    text-align: left;
     color: white;
     padding: 0 0.5rem;
 }
 
 .faq-item {
-    min-width: 50%;
-    max-width: 50%;
     margin: 0.5rem 0;
     word-wrap: break-word;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* padding: 0.75rem 0; */
-    /* margin: 1rem 0; */
-    /* border-top: 1px solid lightgrey; */
-    /* border-bottom: 1px solid lightgrey; */
     cursor: pointer;
 }
 
 .answer {
     overflow: hidden;
-    /* overflow-y: auto; */
     height: 0;
-    /* max-height: 75px; */
     opacity: 0;
     font-size: 1.05rem;
     line-height: 1.5rem;
     transition: 500ms;
-    /* transition: height 500ms, padding 500ms, margin-top 500ms, opacity 500ms; */
-    /* padding: 0.5rem 0; */
 }
 
 .arrow {
-    /* align-self: center; */
     height: 30px;
     width: 30px;
-    /* padding: 1rem 0.75rem;
-    padding-bottom: 1.25rem; */
     font-size: 20px;
     font-weight: 600;
     color: white;
@@ -115,7 +101,6 @@
 }
 
 .faq-item.show .answer {
-    /* padding: 0.5rem 0; */
     margin-top: 1.25rem;
     height: 135px;
     opacity: 1;
@@ -150,4 +135,30 @@
 .button:hover {
     background-color: white;
     color: #2289ff;
+}
+
+@media (max-width: 768px) {
+    .content-main {
+        width: 540px;
+    }
+}
+
+@media (max-width: 554px) {
+    .content-main, .container-faq {
+        width: 412px;
+    }
+}
+
+@media (max-width: 426px) {
+    .content-main, .container-faq {
+        width: 360px;
+    }
+
+    .page-title {
+        text-align: center;
+    }
+
+    .faq-subtitle h3 {
+        font-size: 17px;
+    }
 }

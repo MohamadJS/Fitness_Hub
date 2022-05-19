@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= data.foods[0].description %></title>
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/partials/header.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
@@ -16,14 +17,6 @@
   <%- include("../partials/header") %> 
   <%- include("../partials/flash") %> 
   <main>
-    <%// for (let nutrient of data.foods[0].foodNutrients) { %> 
-      <!-- <p><%=// nutrient.nutrientName %> <span><%=// nutrient.value %></span><span><%= //nutrient.unitName.toLowerCase() %></span></p> -->
-      <%// } %> 
-      <!-- <% //for (let i = 0; i < 16; i++) { %> 
-        <p><%= //data.foods[0].foodNutrients[arrayPosition[i]].nutrientName%> 
-          <span class="value"><%=// Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value)%></span>
-        </p>
-      <% //} %>  -->
       <div class="wrapper">
         <div class="title-container">
           <h1 class="title"><%= data.foods[0].description %></h1>
@@ -77,8 +70,7 @@
         </div>
       </div>
   </main>
-    <!-- <script src="\js\foodInfo.js"></script> -->
-    <script src="\js\food.js"></script>
+    <script src="/js/food.js"></script>
     <script src="/js/animation.js"></script>
 </body>
 </html>
