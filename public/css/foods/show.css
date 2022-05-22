@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -9,6 +13,7 @@
 
 .title-container {
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .title {
@@ -16,8 +21,18 @@
     font-weight: 600;
 }
 
+.amount {
+    margin: 0.25rem 0;
+}
+
 .ss-container {
-    text-align: center;
+    text-align: left;
+}
+
+.amount, .ss-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -53,6 +68,37 @@
 
 .center {
     text-align: center;
+}
+
+select, input[type="number"], input[type="date"] {
+    padding: 0.125rem 0.25rem;
+    border: 1px solid #2289ff;
+}
+
+select:focus, input[type="number"]:focus, input[type="date"]:focus {
+    outline-color: #2289ff;
+}
+
+select:first-of-type, input[type="number"] {
+    margin-top: 0.15rem;
+}
+
+.button {
+    border: none;
+    padding: 0.25rem 0.5rem;
+    background-color: #2289ff;
+    color: white;
+    transition: 200ms background-color ease-in-out;
+}
+
+.button:hover {
+    background-color: #0270ee;
+    cursor: pointer;
+}
+
+.margin {
+    margin: 0.5rem 0;
+    padding: 0.25rem 0.5rem;
 }
 
 @media (max-width: 430px) {

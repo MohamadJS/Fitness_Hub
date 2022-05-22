@@ -22,7 +22,13 @@ const diaryRoutes = require("./routes/foodDiary");
 const recipeRoutes = require("./routes/recipe");
 const commentRoutes = require("./routes/comment");
 
-mongoose.connect("mongodb://localhost:27017/fitness-hub", {
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const MongoStore = require("connect-mongo");
+
+const dbUrl = process.env.DB_URL;
+
+mongoose.connect(process.env.DB_URL || "mongodb://localhost:27017/fitness-hub", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -44,12 +50,86 @@ app.use(methodOverride("_method"));
 // Parses the req.body so we can access it.
 app.use(express.urlencoded({ extended: true }));
 
-const sessionConfig = {
+// Mongo Injection
+app.use(mongoSanitize());
+
+const scriptSrcUrls = [
+    "https://*.dreamstime.com/",
+    "https://*.fontawesome.com/",
+    "https://cdnjs.cloudflare.com/",
+    "https://cdn.jsdelivr.net/",
+    "https://res.cloudinary.com/domad5jvw/"
+];
+const styleSrcUrls = [
+    "https://cdnjs.cloudflare.com/",
+    "https://*.fontawesome.com/",
+    "https://fonts.googleapis.com/",
+    "https://cdn.jsdelivr.net/",
+    "https://res.cloudinary.com/domad5jvw/"
+];
+const connectSrcUrls = [
+    "https://res.cloudinary.com/domad5jvw/",
+    "https://api.nal.usda.gov/fdc/v1/foods/",
+];
+
+const fontSrcUrls = [
+    "https://fonts.gstatic.com/",
+    "https://fonts.gstatic.com/",
+    "https://cdnjs.cloudflare.com/",
+];
+
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: [],
+                connectSrc: ["'self'", ...connectSrcUrls],
+                scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+                styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+                workerSrc: ["'self'", "blob:"],
+                objectSrc: [],
+                imgSrc: [
+                    "'self'",
+                    "blob:",
+                    "data:",
+                    "https://res.cloudinary.com/domad5jvw/",
+                    "https://images.unsplash.com/",
+                    "https://*.dreamstime.com/",
+                    "https://api.nal.usda.gov/fdc/v1/foods/",
+                    "https://res.cloudinary.com/domad5jvw/",
+                ],
+                fontSrc: ["'self'", ...fontSrcUrls],
+                mediaSrc: ["https://res.cloudinary.com/dv5vm4sqh/"],
+                childSrc: ["blob:"]
+            }
+        },
+        crossOriginEmbedderPolicy: false
+    })
+);
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
     secret: "thisshouldbeabettersecret",
+    //helps prevent unneccessary resaves when data & session has not changed.
+    touchAfter: 24 * 60 * 60  //update once every 24 hours (in seconds)
+})
+
+store.on("error", function (e) {
+    console.log("Session Store Error: ", e);
+})
+
+const secret = process.env.SECRET || "thisshouldbeabettersecret";
+
+const sessionConfig = {
+    name: "session",
+    store,
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        sameSite: "strict",
+        // secure: true,
         expires: Date.now() * 1000 * 60 * 60 * 24,
         maxAge: 1000 * 60 * 60 * 24
     }

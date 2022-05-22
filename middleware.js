@@ -1,5 +1,6 @@
 const { foodDiarySchema, recipeSchema, commentSchema } = require("./schemas");
 const Recipe = require("./models/recipes");
+const FoodDiary = require("./models/foodDiaries");
 const Comment = require("./models/comment");
 const ExpressError = require("./utils/ExpressError");
 const comment = require("./models/comment");
@@ -41,23 +42,40 @@ module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
     const recipe = await Recipe.findById(id);
 
-    if (!recipe.author.equals(req.user._id)) {
+    if (!recipe) {
+        req.flash("error", "Recipe not found");
+        return res.redirect("/recipes");
+    } 
+    else if (!recipe.author.equals(req.user._id)) {
         req.flash("error", "You do not have permission to do that!");
         return res.redirect(`/recipes/${id}`);
     }
     next();
 }
 
-module.exports.validateComment = async (req, res, next) => {
-    const { error } = commentSchema.validate(req.body);
+module.exports.isDiaryAuthor = async (req, res, next) => {
+    const { date } = req.params;
+    const userId = req.user.id
+    const foodDiary = await FoodDiary.findOne({ date, author: userId });
 
-    const recipe = await Recipe.findById(req.params.id);
-
-    if (req.body.comment.body.trim() == '') {
-        req.flash("error", "Cannot post an empty comment.")
-        return res.redirect(`/recipes/${recipe._id}`);
+    if (!foodDiary) {
+        console.log("Food Diary")
+        req.flash("error", "No Diary Found.");
+        return res.redirect(`/diary/${date}`);
     }
-    else if (error) {
+    else if (!foodDiary.author.equals(req.user._id)) {
+        console.log("author")
+        req.flash("error", "You do not have permission to do that!");
+        return res.redirect(`/diary/${date}`);
+    }
+    next();
+}
+
+module.exports.validateComment = (req, res, next) => {
+    const { error } = commentSchema.validate(req.body);
+    const id = req.params;
+
+    if (error) {
         const msg = error.details.map(el => el.message).join(",");
         throw new ExpressError(msg, 400);
     }
@@ -73,5 +91,31 @@ module.exports.isCommentAuthor = async (req, res, next) => {
         req.flash("error", "You do not have permission to do that!");
         return res.redirect(`/recipes/${id}`);
     }
+    next();
+}
+
+module.exports.validateUser = (req, res, next) => {
+    const { username, password } = req.body;
+
+    const deniedChars = [" ", "!", "?", "@", "#", "$", "%", "^", "&", "*", "(", ")",
+    "[", "]", "{", "}", "|", "\\", ";", ":", "'", '"', "<", ",", ">", ".", "/"];
+
+    deniedChars.forEach(j => {
+        if (username.includes(j)) {
+            req.flash("error", "Username contains an illegal character.");
+            return res.redirect("/signup");
+        }
+    })
+    
+    if (username.length <= 4) {
+        req.flash("error", "Username must be longer than 4 characters.");
+        return res.redirect("/signup");
+    }
+
+    if (password.length <= 7) {
+        req.flash("error", "Password must be longer than 7 characters.");
+        return res.redirect("/signup")
+    }
+
     next();
 }

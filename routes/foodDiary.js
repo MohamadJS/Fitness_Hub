@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
-const { isLoggedIn, validateDiary } = require("../middleware");
+const { isLoggedIn, isDiaryAuthor, validateDiary } = require("../middleware");
 const foodApi = require("../utils/foodApi");
 const FoodDiary = require("../models/foodDiaries");
 const ExpressError = require("../utils/ExpressError");
@@ -100,7 +100,7 @@ router.get("/diary/:date", isLoggedIn, catchAsync(async (req, res) => {
 }));
 
 //Route to gain access to certain food saved, to update food information (Serving Size.)
-router.get("/diary/:date/:meal/:id", isLoggedIn, catchAsync(async (req, res) => {
+router.get("/diary/:date/:meal/:id", isLoggedIn, isDiaryAuthor, catchAsync(async (req, res) => {
     try {
         const { date, id, meal } = req.params;
         const userId = req.user.id;
@@ -109,14 +109,14 @@ router.get("/diary/:date/:meal/:id", isLoggedIn, catchAsync(async (req, res) => 
         const pickFood = await FoodDiary.findOne({ date, food: meal, author: userId });
         let selectedFood = foodDiary.food[meal].filter(function (el) { return el._id == id })[0];
         const data = await foodApi(selectedFood.foodName);
-    
+        
         res.render("diaries/edit", {foodDiary, selectedFood, id, meal, data, arrayPosition, arrayNames} );
-    } catch (error) {
-        throw new ExpressError("Invalid Diary", 400);
+    } catch (e) {
+        throw new ExpressError("An Error Occured", "400");
     }
 }))
 
-router.put("/diary/:date/:meal/:id", isLoggedIn, catchAsync(async (req, res) => {
+router.put("/diary/:date/:meal/:id", isLoggedIn, isDiaryAuthor, catchAsync(async (req, res) => {
     const { date, meal, id } = req.params;
     const { calories, grams, servingSize, amount } = req.body.foodDiary;
     const userId = req.user.id;

@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Karla:wght@350;400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/food.css">
+    <link rel="stylesheet" href="../css/foods/show.css">
 </head>
 <body class="preload">
   <%- include("../partials/header") %> 
@@ -48,9 +48,9 @@
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
             <option value="snack">Snack</option>
-            <% } %> 
           </select>
-        <button>Log Food</button>
+        <button class="button">Log Food</button>
+        <% } %> 
       </div>
       </form>
         <div class="container">
@@ -66,6 +66,11 @@
               <p class="item">
                 <%= arrayNames[i] %> 
                 <span><span class="nutrients"><%= Math.round(data.foods[0].foodNutrients[arrayPosition[i]].value)%></span> <span><%= data.foods[0].foodNutrients[arrayPosition[i]].unitName.toLowerCase() %></span></span></p>
+            <% } %> 
+            <% if(!currentUser) { %> 
+            <form action="/food/<%= data.foods[0].fdcId %>" method="POST">
+              <button class="button margin">Log Food</button>
+            </form>
             <% } %> 
           </div>
         </div>
