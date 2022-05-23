@@ -61,6 +61,10 @@ html, body {
 
 body {
     position: relative;
+    overflow-y: hidden;
+}
+
+html {
     overflow-y: scroll;
 }
 
