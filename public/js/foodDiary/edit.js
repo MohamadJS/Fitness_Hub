@@ -1,8 +1,6 @@
 const selectServingSize = document.querySelector("#selectServingSize");
 const defaultOption = document.querySelector("#serving-size").value;
 
-console.log(selectServingSize);
-
 for (let servings of selectServingSize.options) {
     if (servings.textContent == defaultOption)
         selectServingSize.selectedIndex = servings.index;
@@ -76,7 +74,6 @@ servingSize.addEventListener("change", e => {
 const amountInput = document.querySelector("#amount");
 
 amountInput.addEventListener("input", e => {
-    console.log(nutrients[0]);
     if(e.target.value > 1000) {
         e.target.value = 1000;
         return;

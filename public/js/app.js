@@ -45,9 +45,8 @@ function getData() {
 // Displays Nutritional information on the screen
 async function displayRes(data, name) {
   const nutritionInfo = await data();
-  if (!nutritionInfo.foods[0]) {
-    console.log("Not Found")
-  } else {
+  if (nutritionInfo?.foods[0]) {
+  }
     const resDiv = document.createElement("div");
     const nutritionContainer = document.createElement("div");
 
@@ -91,7 +90,6 @@ async function displayRes(data, name) {
     nutritionContainer.classList.add("nutrition-container");
     resDiv.append(nutritionContainer);
 
-    console.log(nutritionInfo);
 
 
     // Carbs
@@ -100,8 +98,6 @@ async function displayRes(data, name) {
     // Nutrients
     appendRes(label.nutrients, directory.nutrients, nutritionInfo.foods[0].foodNutrients, "mg", nutritionContainer);
   }
-
-}
 
 function appendRes(name, dir, data, unit, div) {
   const itemDiv = document.createElement("div");

@@ -6,16 +6,13 @@ const textArea = document.querySelectorAll("textarea");
 let pattern = /image-*/;
 
 input.forEach(i => {
-    console.log(i);
     i.addEventListener("input", (e) => {
-        console.log(e);
         e.target.name == "recipe[title]" ? feedback(e, message[0]) : feedback(e, message[1]);
     })
 })
 
 textArea.forEach(i => {
     i.addEventListener("input", (e) => {
-        console.log(e);
         e.target.name == "recipe[ingredients]" ? feedback(e, message[2]) : feedback(e, message[3]);
     })
 })
@@ -23,7 +20,6 @@ textArea.forEach(i => {
 function feedback(e, iMessage) {
 
     if (e.target.localName == "input") {
-        console.log(e.target.name);
         switch (e.target.name) {
             case "recipe[title]":
                 if (e.target.value.trim() == '') {
@@ -74,10 +70,8 @@ function feedback(e, iMessage) {
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(e);
     valid = true;
     for (let i of input) {
-        console.log(i);
         if (i.name == "recipe[title]" && i.value.trim() == '') {
             message[0].classList.add("active");
             i.classList.add("invalid");

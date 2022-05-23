@@ -38,9 +38,9 @@ module.exports.foodDiarySchema = Joi.object({
 
 module.exports.recipeSchema = Joi.object({
     recipe: Joi.object({
-        title: Joi.string().trim().required().escapeHTML(),
-        ingredients: Joi.string().required().escapeHTML(),
-        body: Joi.string().required().escapeHTML(),
+        title: Joi.string().trim().required(),
+        ingredients: Joi.string().required(),
+        body: Joi.string().required(),
     }).required()
 })
 
