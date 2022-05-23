@@ -94,25 +94,25 @@ module.exports.isCommentAuthor = async (req, res, next) => {
     next();
 }
 
-module.exports.validateUser = (req, res, next) => {
+module.exports.validateUser = async (req, res, next) => {
     const { username, password } = req.body;
 
     const deniedChars = [" ", "!", "?", "@", "#", "$", "%", "^", "&", "*", "(", ")",
     "[", "]", "{", "}", "|", "\\", ";", ":", "'", '"', "<", ",", ">", ".", "/"];
 
-    deniedChars.forEach(j => {
-        if (username.includes(j)) {
+
+    for (let i = 0; i < deniedChars.length; i++) {
+        if (username.includes(deniedChars[i])) {
             req.flash("error", "Username contains an illegal character.");
             return res.redirect("/signup");
         }
-    })
+    }
     
     if (username.length <= 4) {
         req.flash("error", "Username must be longer than 4 characters.");
         return res.redirect("/signup");
     }
-
-    if (password.length <= 7) {
+    else if (password.length <= 7) {
         req.flash("error", "Password must be longer than 7 characters.");
         return res.redirect("/signup")
     }
