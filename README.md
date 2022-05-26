@@ -3,6 +3,8 @@ Food Diary Website
 
 This website allows users to track their macronutrients, calories, and post recipes for others to see.
 
+Live View: https://fitness--hub.herokuapp.com/
+
 Recipes
 -------
 Post/Edit a recipe - (image, ingredients, instructions)
